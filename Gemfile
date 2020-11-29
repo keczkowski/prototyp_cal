@@ -7,6 +7,11 @@ ruby '2.6.2'
 gem 'rails', '~> 6.0.1'
 gem 'bootstrap', '~> 4.3.1'
 gem "font-awesome-rails"
+gem 'simple_form'
+gem 'kaminari'
+gem 'ransack', github: 'activerecord-hackery/ransack'
+gem "select2-rails"
+gem 'devise'
 
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3', '~> 1.4'

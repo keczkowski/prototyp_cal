@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>INSPINIA | Responsive admin theme</title>
+    <title>SŁOWNIK POJĘĆ | Politechnika Poznańska</title>
 
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -28,13 +28,15 @@
         <%= render 'layouts/navigation' %>
 
         <!-- Page wraper -->
-        <div id="page-wrapper" class="gray-bg <%= @extra_class %>">
+        <div id="page-wrapper" class="wrapper wrapper-content gray-bg <%= @extra_class %> wrapper">
 
             <!-- Page wrapper -->
             <%= render 'layouts/topnavbar' %>
 
+            <%= flash_messages %>
+
             <!-- Main view  -->
-            <%= yield %>
+              <%= yield %>
 
             <!-- Footer -->
             <%= render 'layouts/footer' %>

@@ -1,0 +1,29 @@
+<div class="ibox">
+  <div class="ibox-title">
+    <h3>Definicja: <%= @concept.name %></h3>
+    <div class="ibox-tools">
+      <%= link_to 'Edycja', edit_concept_path(@concept), class: "btn btn-sm btn-primary" %>
+      <%= link_to 'Cofnij', concepts_path, class: "btn btn-sm btn-primary" %>
+    </div>
+  </div>
+  <div class="ibox-content">
+    <p>
+      <strong>Nazwa</strong><br />
+      <%= @concept.name %>
+    </p>
+    <p>
+      <strong>Treść</strong><br />
+      <%= @concept.body %>
+    </p>
+    <p>
+      <strong>Tagi</strong><br />
+      <% @concept.tags.each do |tag| %>
+        <%= tag.name %>
+      <% end %>
+    </p>
+    <p>
+      <strong>Użytkownik</strong><br />
+      <%= @concept.user_id %>
+    </p>
+  </div>
+</div>

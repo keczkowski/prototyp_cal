@@ -1,0 +1,9 @@
+<%= simple_form_for @concept do |f| %>
+  <%= f.input :name, label: "Nazwa" %>
+  <%= f.input :body, label: "Treść" %>
+  <%= f.association :tags, label: "Tagi", id: "dropdown" %>
+  <%= f.input :user_id, label: "Użytkownik" %>
+  <hr>
+  <%= f.button :submit, "Zapisz", class: "btn btn-sm btn-primary" %>
+  <%= link_to "Anuluj", concepts_path, class: "btn btn-sm btn-primary" %>
+<% end %>

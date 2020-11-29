@@ -1,0 +1,32 @@
+<div class="ibox">
+  <div class="ibox-title">
+    <h3>Tag: <%= @tag.name %></h3>
+    <div class="ibox-tools">
+      <%= link_to 'Edycja', edit_tag_path(@tag), class: "btn btn-sm btn-primary" %>
+      <%= link_to 'Cofnij', tags_path, class: "btn btn-sm btn-primary" %>
+    </div>
+  </div>
+  <div class="ibox-content">
+    <p>
+      <strong>Powiązane pojęcia</strong>
+    </p>
+    <table class="table table-hover">
+      <tr>
+        <td>Nazwa</td>
+        <td>Treść</td>
+        <td width="210">Opcje</td>
+      </tr>
+      <% @tag.concepts.each do |concept| %>
+        <tr>
+          <td><%= link_to concept.name, concept %></td>
+          <td><%= link_to concept.body, concept %></td>
+          <td>
+            <%= link_to 'Pokaż', concept, class: "btn btn-sm btn-primary" %>
+            <%= link_to 'Edytuj', edit_concept_path(concept), class: "btn btn-sm btn-warning" %>
+            <%= link_to 'Usuń', concept, method: :delete, data: { confirm: 'Czy na pewno usunąć?' }, class: "btn btn-sm btn-danger" %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

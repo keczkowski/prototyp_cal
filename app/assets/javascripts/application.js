@@ -19,5 +19,9 @@
 //= require pace/pace.min.js
 //= require slimscroll/jquery.slimscroll.min.js
 //= require metisMenu/jquery.metisMenu.js
+//= require select2
 //= require inspinia.js
 
+$( "#dropdown" ).select2({
+    theme: "bootstrap"
+});

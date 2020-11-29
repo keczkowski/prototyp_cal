@@ -4,25 +4,44 @@
             <li class="nav-header">
                 <div class="dropdown profile-element">
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                        <span class="block m-t-xs font-bold">Example user</span>
-                        <span class="text-muted text-xs block">Example menu<b class="caret"></b></span>
+                        <span class="block m-t-xs font-bold">Krzysztof Kęczkowski</span>
+                        <span class="text-muted text-xs block">Opcje<b class="caret"></b></span>
                     </a>
                     <ul class="dropdown-menu animated fadeInRight m-t-xs">
-                        <li><a class="dropdown-item" href="#">Logout</a></li>
+                        <li>
+                          <%= link_to edit_user_registration_path, class: "dropdown-item" do %>
+                            Ustawienia
+                          <% end %>
+                        </li>
+                        <li>
+                          <%= link_to destroy_user_session_path, method: :delete do %>
+                            Wyloguj
+                          <% end %>
+                        </li>
                     </ul>
                 </div>
                 <div class="logo-element">
-                    IN+
+                    PP+
                 </div>
             </li>
-            <li class="<%= 'active' if current_page?('/') %>">
+            <li class="<%= 'active' if controller_name == 'home' %>">
                 <%= link_to "/" do %>
-                <i class="fa fa-laptop"></i> <span class="nav-label">Main page</span>
+                <i class="fa fa-laptop"></i> <span class="nav-label">Strona Główna</span>
                 <% end %>
             </li>
-            <li class="<%= 'active' if current_page?('/home/minor') %>">
+            <li class="<%= 'active' if controller_name == 'users' %>">
                 <%= link_to "/home/minor" do %>
-                <i class="fa fa-desktop"></i> <span class="nav-label">Minor page</span>
+                <i class="fa fa-user"></i> <span class="nav-label">Użytkownicy</span>
+                <% end %>
+            </li>
+            <li class="<%= 'active' if controller_name == 'concepts' %>">
+                <%= link_to concepts_path do %>
+                <i class="fa fa-book"></i> <span class="nav-label">Słownik pojęć</span>
+                <% end %>
+            </li>
+            <li class="<%= 'active' if controller_name == 'tags' %>">
+                <%= link_to tags_path do %>
+                <i class="fa fa-hashtag"></i> <span class="nav-label">Tagi</span>
                 <% end %>
             </li>
         </ul>
