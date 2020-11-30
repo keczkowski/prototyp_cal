@@ -1,21 +1,31 @@
 <div class="row wrapper border-bottom white-bg page-heading">
   <div class="col-lg-10">
-    <h2>Edycja tagu</h2>
+    <h2>Edycja użytkownika</h2>
     <ol class="breadcrumb">
       <li class="breadcrumb-item">
         <a href="<%= root_path %>">Strona Główna</a>
       </li>
       <li class="breadcrumb-item">
-        <a href="<%= tags_path %>">Tagi</a>
+        <a href="<%= users_path %>">Użytkownicy</a>
       </li>
       <li class="breadcrumb-item">
-        <a href="<%= tag_path(@tag) %>"><%= @tag.name %></a>
+        <a href="<%= user_path(@user) %>"><%= @user.email %></a>
       </li>
       <li class="breadcrumb-item active">
-        <strong>Edycja tagu</strong>
+        <strong>Edycja użytkownika</strong>
       </li>
     </ol>
   </div>
 </div>
 
-<%= render 'form', tag: @tag %>
+<div class="ibox">
+  <div class="ibox-title">
+    <h3>Edycja użytkownika</h3>
+    <div class="ibox-tools">
+      
+    </div>
+  </div>
+  <div class="ibox-content">
+    <%= render 'form', user: @user %>
+  </div>
+</div>

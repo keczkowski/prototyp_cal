@@ -1,6 +1,34 @@
-<%= simple_form_for @tag do |f| %>
-  <%= f.input :name, label: "Nazwa" %>
+<%= simple_form_for @user, multipart: true do |f| %>
+  <h3>Dane do zalogowania się</h3>
+  <%= f.input :email,
+            required: true,
+            autofocus: true,
+            input_html: { autocomplete: "email" }%>
+  <% if params["action"] == "create" or params["action"] == "new" %>
+    <%= f.input :password,
+                label: "Hasło",
+                required: true,
+                hint: ("#{@minimum_password_length} znaków miminalnie" if @minimum_password_length),
+                input_html: { autocomplete: "new-password" } %>
+    <%= f.input :password_confirmation,
+                label: "Powtórz hasło",
+                required: true,
+                input_html: { autocomplete: "new-password" } %>
+  <% end %>
+  <hr>
+  <h3>Dane dodatkowe</h3>
+  <%= f.input :name, label: "Nazwisko" %>
+  <%= f.input :position, label: "Stanowisko" %>
+  <%= f.simple_fields_for :user do |pic| %>
+    <%= pic.file_field :avatar, id: "user_avatar", name: "user[avatar]" %>
+  <% end %>
+  <hr>
+  <h3>Dostępy do modułów systemu</h3>
+  <%= f.input :verified, label: "Dostęp do systemu", as: :boolean %>
+  <%= f.input :access_tags, label: "Dostęp do bazy tagów", as: :boolean %>
+  <%= f.input :access_concepts, label: "Dostęp do bazy pojęć", as: :boolean %>
+  <%= f.input :access_users, label: "Dostęp do bazy użytkowników", as: :boolean %>
   <hr>
   <%= f.button :submit, "Zapisz", class: "btn btn-sm btn-primary" %>
-  <%= link_to "Anuluj", tags_path, class: "btn btn-sm btn-primary" %>
+  <%= link_to "Anuluj", users_path, class: "btn btn-sm btn-primary" %>
 <% end %>

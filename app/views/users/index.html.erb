@@ -1,3 +1,17 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+  <div class="col-lg-10">
+    <h2>Użytkownicy</h2>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a href="<%= root_path %>">Strona Główna</a>
+      </li>
+      <li class="breadcrumb-item active">
+        <strong>Użytkownicy</strong>
+      </li>
+    </ol>
+  </div>
+</div>
+
 <div class="ibox">
   <div class="ibox-title">
     <h3>Użytkownicy</h3>
@@ -14,6 +28,7 @@
           <th><%= sort_link(@q, :id, "#id") %></th>
           <th><%= sort_link(@q, :email, "Email") %></th>
           <th>Pojęcia</th>
+          <th>Dostępy</th>
           <th><%= sort_link(@q, :updated_at, 'Data zmian') %></th>
           <th width="200">Opcje</th>
         </tr>
@@ -24,6 +39,7 @@
             <td><%= user.id %></td>
             <td><%= link_to user.email, user %></td>
             <td><%= link_to user.concepts.count, user %></td>
+            <td>Użytkownicy, Tagi, Pojęcia</td>
             <td><%= link_to user.updated_at, user %></td>
             <td>
               <%= link_to 'Pokaż', user, class: "btn btn-sm btn-primary" %>

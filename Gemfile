@@ -13,6 +13,7 @@ gem 'ransack', github: 'activerecord-hackery/ransack'
 gem "select2-rails"
 gem 'devise'
 gem 'tinymce-rails'
+gem 'carrierwave', '~> 2.0'
 
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3', '~> 1.4'
@@ -47,6 +48,7 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem "letter_opener"
 end
 
 group :test do

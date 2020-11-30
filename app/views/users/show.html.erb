@@ -1,3 +1,20 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+  <div class="col-lg-10">
+    <h2><%= @user.email %></h2>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a href="<%= root_path %>">Strona Główna</a>
+      </li>
+      <li class="breadcrumb-item">
+        <a href="<%= users_path %>">Użytkownicy</a>
+      </li>
+      <li class="breadcrumb-item active">
+        <strong><%= @user.email %></strong>
+      </li>
+    </ol>
+  </div>
+</div>
+
 <div class="ibox">
   <div class="ibox-title">
     <h3>Dane użytkownika</h3>
@@ -7,18 +24,74 @@
     </div>
   </div>
   <div class="ibox-content">
-    <p>
-      <strong>Email</strong><br />
-      <%= @user.email %>
-    </p>
-    <p>
-      <strong>Data utworzenia</strong><br />
-      <%= @user.created_at %>
-    </p>
-    <p>
-      <strong>Data modyfikacji</strong><br />
-      <%= @user.updated_at %>
-    </p>
+    <div class="row">
+      <div class="col-sm-4">
+        <p>
+          <strong>Email</strong><br />
+          <%= @user.email %>
+        </p>
+        <p>
+          <strong>Nazwisko</strong><br />
+          <%= @user.name %>
+        </p>
+        <p>
+          <strong>Stanowisko</strong><br />
+          <%= @user.position %>
+        </p>
+        <p>
+          <strong>Avatar</strong><br />
+          <%= @user.avatar.present? ? image_tag(@user.avatar.thumb.url, class: "rounded-circle", style: "width:50px") : "-" %>
+        </p>
+      </div>
+      <div class="col-sm-4">
+        <p>
+          <strong>Ostatnie zalogowanie</strong><br />
+          <%= @user.last_sign_in_at %>
+        </p>
+        <p>
+          <strong>Data utworzenia</strong><br />
+          <%= @user.created_at %>
+        </p>
+        <p>
+          <strong>Data modyfikacji</strong><br />
+          <%= @user.updated_at %>
+        </p>
+      </div>
+      <div class="col-sm-4">
+        <p>
+          <strong>Dostęp do systemu</strong><br />
+          <% if @user.verified %>
+            <span class="badge badge-primary">TAK</span>
+          <% else %>
+            <span class="badge badge-danger">NIE</span>
+          <% end %>
+        </p>
+        <p>
+          <strong>Dostęp do bazy pojęć</strong><br />
+          <% if @user.access_concepts %>
+            <span class="badge badge-primary">TAK</span>
+          <% else %>
+            <span class="badge badge-danger">NIE</span>
+          <% end %>
+        </p>
+        <p>
+          <strong>Dostęp do bazy tagów</strong><br />
+          <% if @user.access_tags %>
+            <span class="badge badge-primary">TAK</span>
+          <% else %>
+            <span class="badge badge-danger">NIE</span>
+          <% end %>
+        </p>
+        <p>
+          <strong>Dostęp do bazy użytkowników</strong><br />
+          <% if @user.access_users %>
+            <span class="badge badge-primary">TAK</span>
+          <% else %>
+            <span class="badge badge-danger">NIE</span>
+          <% end %>
+        </p>
+      </div>
+    </div>
   </div>
 </div>
 

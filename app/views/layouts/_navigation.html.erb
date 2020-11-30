@@ -3,6 +3,9 @@
         <ul class="nav metismenu" id="side-menu">
             <li class="nav-header">
                 <div class="dropdown profile-element">
+                  <% if current_user and current_user.avatar.present? %>
+                    <%= image_tag current_user.avatar.thumb.url, class: "rounded-circle", size: 50 %>
+                  <% end %>
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                         <span class="block m-t-xs font-bold">Krzysztof Kęczkowski</span>
                         <span class="text-muted text-xs block">Opcje<b class="caret"></b></span>
