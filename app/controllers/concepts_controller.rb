@@ -1,6 +1,8 @@
 class ConceptsController < ApplicationController
   before_action :set_concept, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
+  before_action :is_verified
+  before_action :has_access_to_concepts
 
   # GET /concepts
   # GET /concepts.json
@@ -26,10 +28,23 @@ class ConceptsController < ApplicationController
   # POST /concepts
   # POST /concepts.json
   def create
-    @concept = Concept.new(concept_params)
-
+    if concept_params[:tag_ids].present?
+      new_tag_ids = []
+      concept_params[:tag_ids].each do |tag_id|
+        if tag_id.length > 0 and Tag.exists?(tag_id)
+          new_tag_ids << tag_id
+        else
+          t = Tag.find_or_create_by(name: tag_id)
+          new_tag_ids << t.id
+        end
+      end
+    end
+    @concept = Concept.new(concept_params.except(:tag_ids))
     respond_to do |format|
       if @concept.save
+        new_tag_ids.each do |new_tag_id|
+          ConceptTag.find_or_create_by(concept_id: @concept.id, tag_id: new_tag_id)
+        end
         format.html { redirect_to @concept, notice: 'Definicja pojęcia została dodana.' }
         format.json { render :show, status: :created, location: @concept }
       else
@@ -42,8 +57,24 @@ class ConceptsController < ApplicationController
   # PATCH/PUT /concepts/1
   # PATCH/PUT /concepts/1.json
   def update
+    if concept_params[:tag_ids].present?
+      new_tag_ids = []
+      concept_params[:tag_ids].each do |tag_id|
+        if tag_id.length > 0 and Tag.exists?(tag_id)
+          new_tag_ids << tag_id
+        else
+          if tag_id.present?
+            t = Tag.find_or_create_by(name: tag_id)
+            new_tag_ids << t.id
+          end
+        end
+      end
+    end
     respond_to do |format|
-      if @concept.update(concept_params)
+      if @concept.update(concept_params.except(:tag_ids))
+        new_tag_ids.each do |new_tag_id|
+          ConceptTag.find_or_create_by(concept_id: @concept.id, tag_id: new_tag_id)
+        end
         format.html { redirect_to @concept, notice: 'Definicja pojęcia została zmieniona.' }
         format.json { render :show, status: :ok, location: @concept }
       else
