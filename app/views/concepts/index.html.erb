@@ -1,6 +1,20 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+  <div class="col-lg-10">
+    <h2>Baza pojęć</h2>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a href="<%= root_path %>">Strona Główna</a>
+      </li>
+      <li class="breadcrumb-item active">
+        <strong>Baza Pojęć</strong>
+      </li>
+    </ol>
+  </div>
+</div>
+
 <div class="ibox">
   <div class="ibox-title">
-    <h3>Słownik pojęć</h3>
+    <h3>Baza pojęć</h3>
     <div class="ibox-tools">
       <%= link_to new_concept_path, class: "btn btn-sm btn-primary" do %>
         <i class="fa fa-plus"></i> Dodaj definicję
@@ -8,54 +22,14 @@
     </div>
   </div>
   <div class="ibox-content">
-    <table class="table">
-      <thead>
-        <tr>
-          <th><%= sort_link(@q, :id, "#id") %></th>
-          <th><%= sort_link(@q, :name, "Nazwa") %></th>
-          <th>Tagi</th>
-          <th>Autor</th>
-          <th width="200">Opcje</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @concepts.each do |concept| %>
-          <tr>
-            <td><%= concept.id %></td>
-            <td><%= link_to concept.name, concept %></td>
-            <td>
-              <% if concept.tags.count > 0 %>
-                <% concept.tags.each do |tag| %>
-                  <%= link_to tag do %>
-                    <span class="badge badge-primary"><%= tag.name %></span>
-                  <% end %>
-                <% end %>
-              <% else %>
-                -
-              <% end %>
-            </td>
-            <td>
-              <%= link_to "#" do %>
-                <span class="badge badge-primary"><%= concept.user.email %></span>
-              <% end %>
-            </td>
-            <td>
-              <%= link_to 'Pokaż', concept, class: "btn btn-sm btn-primary" %>
-              <%= link_to 'Edytuj', edit_concept_path(concept), class: "btn btn-sm btn-warning" %>
-              <%= link_to 'Usuń', concept, method: :delete, data: { confirm: 'Czy na pewno usunąć?' }, class: "btn btn-sm btn-danger" %>
-            </td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-    <%= paginate @concepts %>
+    <%= render 'concepts' %>
   </div>
 </div>
 
 <%= content_for :searchbar do %>
   <%= search_form_for @q, class: "navbar-form-custom" do |f| %>
     <div class="form-group">
-        <%= f.search_field :name_or_body_cont, placeholder: "Wyszukaj w słowniku", id: "top-search", class: "form-control" %>
+        <%= f.search_field :name_or_body_cont, placeholder: "Wyszukaj pojęcie", id: "top-search", class: "form-control" %>
     </div>
   <% end %>
 <% end %>

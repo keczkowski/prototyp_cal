@@ -1,0 +1,47 @@
+<div class="ibox">
+  <div class="ibox-title">
+    <h3>Użytkownicy</h3>
+    <div class="ibox-tools">
+      <%= link_to new_user_path, class: "btn btn-sm btn-primary" do %>
+        <i class="fa fa-plus"></i> Dodaj użytkownika
+      <% end %>
+    </div>
+  </div>
+  <div class="ibox-content">
+    <table class="table">
+      <thead>
+        <tr>
+          <th><%= sort_link(@q, :id, "#id") %></th>
+          <th><%= sort_link(@q, :email, "Email") %></th>
+          <th>Pojęcia</th>
+          <th><%= sort_link(@q, :updated_at, 'Data zmian') %></th>
+          <th width="200">Opcje</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @users.each do |user| %>
+          <tr>
+            <td><%= user.id %></td>
+            <td><%= link_to user.email, user %></td>
+            <td><%= link_to user.concepts.count, user %></td>
+            <td><%= link_to user.updated_at, user %></td>
+            <td>
+              <%= link_to 'Pokaż', user, class: "btn btn-sm btn-primary" %>
+              <%= link_to 'Edytuj', edit_user_path(user), class: "btn btn-sm btn-warning" %>
+              <%= link_to 'Usuń', user, method: :delete, data: { confirm: 'Czy na pewno usunąć?' }, class: "btn btn-sm btn-danger" %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <%= paginate @users %>
+  </div>
+</div>
+
+<%= content_for :searchbar do %>
+  <%= search_form_for @q, class: "navbar-form-custom" do |f| %>
+    <div class="form-group">
+        <%= f.search_field :email_cont, placeholder: "Wyszukaj użytkownika", id: "top-search", class: "form-control" %>
+    </div>
+  <% end %>
+<% end %>

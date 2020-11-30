@@ -19,9 +19,15 @@
 //= require pace/pace.min.js
 //= require slimscroll/jquery.slimscroll.min.js
 //= require metisMenu/jquery.metisMenu.js
-//= require select2
 //= require inspinia.js
+//= require select2
 
-$( "#dropdown" ).select2({
-    theme: "bootstrap"
+$(document).ready(function() {
+  $('.select2').select2({
+    allowClear: true,
+    theme: "bootstrap",
+    language: "pl-PL",
+    tags: true,
+    tokenSeparators: [',', ' ']
+  });
 });

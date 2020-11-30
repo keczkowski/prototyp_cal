@@ -1,0 +1,43 @@
+<div class="ibox">
+  <div class="ibox-title">
+    <h3>Dane użytkownika</h3>
+    <div class="ibox-tools">
+      <%= link_to 'Edycja', edit_user_path(@user), class: "btn btn-sm btn-primary" %>
+      <%= link_to 'Cofnij', users_path, class: "btn btn-sm btn-primary" %>
+    </div>
+  </div>
+  <div class="ibox-content">
+    <p>
+      <strong>Email</strong><br />
+      <%= @user.email %>
+    </p>
+    <p>
+      <strong>Data utworzenia</strong><br />
+      <%= @user.created_at %>
+    </p>
+    <p>
+      <strong>Data modyfikacji</strong><br />
+      <%= @user.updated_at %>
+    </p>
+  </div>
+</div>
+
+<div class="ibox">
+  <div class="ibox-title">
+    <h3>Dodane pojęcia</h3>
+    <div class="ibox-tools">
+
+    </div>
+  </div>
+  <div class="ibox-content">
+    <%= render "concepts/concepts" %>
+  </div>
+</div>
+
+<%= content_for :searchbar do %>
+  <%= search_form_for @q, url: @user, method: :get, class: "navbar-form-custom" do |f| %>
+    <div class="form-group">
+        <%= f.search_field :name_or_body_cont, placeholder: "Wyszukaj pojęcie", id: "top-search", class: "form-control" %>
+    </div>
+  <% end %>
+<% end %>

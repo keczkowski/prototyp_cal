@@ -4,4 +4,8 @@ class Concept < ApplicationRecord
   has_many :tags, through: :concept_tags
 
   belongs_to :user
+
+  def show_tags
+    tags.map { |x| x.name }.join(" | ")
+  end
 end

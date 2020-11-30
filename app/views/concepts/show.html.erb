@@ -1,6 +1,23 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+  <div class="col-lg-10">
+    <h2><%= @concept.name %></h2>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a href="<%= root_path %>">Strona Główna</a>
+      </li>
+      <li class="breadcrumb-item">
+        <a href="<%= concepts_path %>">Baza Pojęć</a>
+      </li>
+      <li class="breadcrumb-item active">
+        <strong><%= @concept.name %></strong>
+      </li>
+    </ol>
+  </div>
+</div>
+
 <div class="ibox">
   <div class="ibox-title">
-    <h3>Definicja: <%= @concept.name %></h3>
+    <h3>Dane Pojęcia</h3>
     <div class="ibox-tools">
       <%= link_to 'Edycja', edit_concept_path(@concept), class: "btn btn-sm btn-primary" %>
       <%= link_to 'Cofnij', concepts_path, class: "btn btn-sm btn-primary" %>
@@ -12,18 +29,26 @@
       <%= @concept.name %>
     </p>
     <p>
-      <strong>Treść</strong><br />
-      <%= @concept.body %>
-    </p>
-    <p>
       <strong>Tagi</strong><br />
-      <% @concept.tags.each do |tag| %>
-        <%= tag.name %>
+      <% if @concept.tags.count > 0 %>
+        <% @concept.tags.each do |tag| %>
+          <%= link_to tag do %>
+            <span class="badge badge-primary"><%= tag.name %></span>
+          <% end %>
+        <% end %>
+      <% else %>
+        -
       <% end %>
     </p>
     <p>
       <strong>Użytkownik</strong><br />
-      <%= @concept.user_id %>
+      <%= link_to @concept.user do %>
+      <span class="badge badge-primary"><%= @concept.user.email %></span>
+      <% end %>
+    </p>
+    <p>
+      <strong>Treść</strong><br />
+      <%= @concept.body %>
     </p>
   </div>
 </div>

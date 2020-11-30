@@ -29,19 +29,19 @@
                 <i class="fa fa-laptop"></i> <span class="nav-label">Strona Główna</span>
                 <% end %>
             </li>
-            <li class="<%= 'active' if controller_name == 'users' %>">
-                <%= link_to "/home/minor" do %>
-                <i class="fa fa-user"></i> <span class="nav-label">Użytkownicy</span>
-                <% end %>
-            </li>
             <li class="<%= 'active' if controller_name == 'concepts' %>">
                 <%= link_to concepts_path do %>
-                <i class="fa fa-book"></i> <span class="nav-label">Słownik pojęć</span>
+                <i class="fa fa-book"></i> <span class="nav-label">Baza Pojęć</span>
                 <% end %>
             </li>
             <li class="<%= 'active' if controller_name == 'tags' %>">
                 <%= link_to tags_path do %>
-                <i class="fa fa-hashtag"></i> <span class="nav-label">Tagi</span>
+                <i class="fa fa-hashtag"></i> <span class="nav-label">Baza Tagów</span>
+                <% end %>
+            </li>
+            <li class="<%= 'active' if controller_name == 'users' %>">
+                <%= link_to users_path do %>
+                <i class="fa fa-user"></i> <span class="nav-label">Użytkownicy</span>
                 <% end %>
             </li>
         </ul>
