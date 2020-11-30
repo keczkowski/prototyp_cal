@@ -46,9 +46,18 @@
       <span class="badge badge-primary"><%= @concept.user.email %></span>
       <% end %>
     </p>
-    <p>
-      <strong>Treść</strong><br />
-      <%= @concept.body %>
-    </p>
+  </div>
+</div>
+
+<div class="ibox">
+  <div class="ibox-title">
+    <h3>Treść</h3>
+    <div class="ibox-tools">
+      <%= link_to 'Edycja', edit_concept_path(@concept), class: "btn btn-sm btn-primary" %>
+
+    </div>
+  </div>
+  <div class="ibox-content">
+    <%= @concept.body.html_safe %>
   </div>
 </div>

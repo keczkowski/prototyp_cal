@@ -1,0 +1,9 @@
+toolbar:
+  - styleselect | bold italic underline | alignleft aligncenter alignright | forecolor | table blockquote code| undo redo
+  - image | link
+plugins:
+  - image
+  - link
+  - table
+  - code
+  - blockquote

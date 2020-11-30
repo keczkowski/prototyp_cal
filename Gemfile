@@ -12,6 +12,7 @@ gem 'kaminari'
 gem 'ransack', github: 'activerecord-hackery/ransack'
 gem "select2-rails"
 gem 'devise'
+gem 'tinymce-rails'
 
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3', '~> 1.4'
