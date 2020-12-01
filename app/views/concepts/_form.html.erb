@@ -2,10 +2,9 @@
   <%= f.input :name, label: "Nazwa" %>
   <%= f.input :body, label: "Treść", input_html: { class: "tinymce", rows: 20, cols: 20 } %>
   <%= f.association :tags, label: "Tagi", input_html: { class: "select2" } %>
-  <%= f.association :user, label: "Użytkownik", label_method: :email, input_html: { class: "select2" } %>
   <hr>
   <%= f.button :submit, "Zapisz", class: "btn btn-sm btn-primary" %>
   <%= link_to "Anuluj", concepts_path, class: "btn btn-sm btn-primary" %>
 <% end %>
 
-<%= tinymce :language => "PL" %>
+<%= tinymce :language => "pl" %>

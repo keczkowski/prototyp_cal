@@ -97,7 +97,7 @@
 
 <div class="ibox">
   <div class="ibox-title">
-    <h3>Dodane pojęcia</h3>
+    <h3>Powiązane definicje</h3>
     <div class="ibox-tools">
 
     </div>
@@ -110,7 +110,7 @@
 <%= content_for :searchbar do %>
   <%= search_form_for @q, url: @user, method: :get, class: "navbar-form-custom" do |f| %>
     <div class="form-group">
-        <%= f.search_field :name_or_body_cont, placeholder: "Wyszukaj pojęcie", id: "top-search", class: "form-control" %>
+        <%= f.search_field :name_or_body_cont, placeholder: "Wyszukaj definicję", id: "top-search", class: "form-control" %>
     </div>
   <% end %>
 <% end %>

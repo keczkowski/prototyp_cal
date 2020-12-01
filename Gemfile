@@ -13,6 +13,7 @@ gem 'ransack', github: 'activerecord-hackery/ransack'
 gem "select2-rails"
 gem 'devise'
 gem 'tinymce-rails'
+gem 'tinymce-rails-langs'
 gem 'carrierwave', '~> 2.0'
 
 # Use sqlite3 as the database for Active Record

@@ -27,7 +27,7 @@
         <tr>
           <th><%= sort_link(@q, :id, "#id") %></th>
           <th><%= sort_link(@q, :email, "Email") %></th>
-          <th>Pojęcia</th>
+          <th>Definicje</th>
           <th>Dostępy</th>
           <th><%= sort_link(@q, :updated_at, 'Data zmian') %></th>
           <th width="200">Opcje</th>
@@ -39,7 +39,28 @@
             <td><%= user.id %></td>
             <td><%= link_to user.email, user %></td>
             <td><%= link_to user.concepts.count, user %></td>
-            <td>Użytkownicy, Tagi, Pojęcia</td>
+            <td>
+              <% if user.verified %>
+                <span class="badge badge-primary">Potwierdzony</span>
+              <% else %>
+                <span class="badge badge-danger">Niepotwierdzony</span>
+              <% end %>
+              <% if user.access_concepts %>
+                <span class="badge badge-primary">Definicje</span>
+              <% else %>
+                <span class="badge badge-danger">Definicje</span>
+              <% end %>
+              <% if user.access_tags %>
+                <span class="badge badge-primary">Tagi</span>
+              <% else %>
+                <span class="badge badge-danger">Tagi</span>
+              <% end %>
+              <% if user.access_users %>
+                <span class="badge badge-primary">Użytkownicy</span>
+              <% else %>
+                <span class="badge badge-danger">Użytkownicy</span>
+              <% end %>
+            </td>
             <td><%= link_to user.updated_at, user %></td>
             <td>
               <%= link_to 'Pokaż', user, class: "btn btn-sm btn-primary" %>

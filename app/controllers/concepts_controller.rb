@@ -40,6 +40,7 @@ class ConceptsController < ApplicationController
       end
     end
     @concept = Concept.new(concept_params.except(:tag_ids))
+    @concept.user_id = current_user.id
     respond_to do |format|
       if @concept.save
         new_tag_ids.each do |new_tag_id|
@@ -70,6 +71,7 @@ class ConceptsController < ApplicationController
         end
       end
     end
+    @concept.user_id = current_user.id
     respond_to do |format|
       if @concept.update(concept_params.except(:tag_ids))
         new_tag_ids.each do |new_tag_id|

@@ -13,7 +13,6 @@ Rails.application.routes.draw do
                                                sign_up: 'signup' }
 
   get "home/index"
-  get "home/minor"
 
   root to: 'home#index'
 

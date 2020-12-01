@@ -234,6 +234,8 @@ GEM
     tilt (2.0.10)
     tinymce-rails (5.6.1)
       railties (>= 3.1.1)
+    tinymce-rails-langs (5.20200505)
+      tinymce-rails (~> 5.0)
     turbolinks (5.2.1)
       turbolinks-source (~> 5.2)
     turbolinks-source (5.2.0)
@@ -283,6 +285,7 @@ DEPENDENCIES
   spring-watcher-listen (~> 2.0.0)
   sqlite3 (~> 1.4)
   tinymce-rails
+  tinymce-rails-langs
   turbolinks (~> 5)
   tzinfo-data
   web-console (>= 3.3.0)

@@ -13,6 +13,8 @@ class TagsController < ApplicationController
   # GET /tags/1
   # GET /tags/1.json
   def show
+    @q = Concept.joins(:concept_tags).where("concept_tags.tag_id = #{@tag.id}").ransack(params[:q])
+    @concepts = @q.result(distinct: true).page params[:page]
   end
 
   # GET /tags/new

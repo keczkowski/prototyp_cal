@@ -6,7 +6,7 @@
         <a href="<%= root_path %>">Strona Główna</a>
       </li>
       <li class="breadcrumb-item">
-        <a href="<%= concepts_path %>">Baza Pojęć</a>
+        <a href="<%= concepts_path %>">Baza Definicji</a>
       </li>
       <li class="breadcrumb-item active">
         <strong><%= @concept.name %></strong>
@@ -17,7 +17,7 @@
 
 <div class="ibox">
   <div class="ibox-title">
-    <h3>Dane Pojęcia</h3>
+    <h3>Dane Definicji</h3>
     <div class="ibox-tools">
       <%= link_to 'Edycja', edit_concept_path(@concept), class: "btn btn-sm btn-primary" %>
       <%= link_to 'Cofnij', concepts_path, class: "btn btn-sm btn-primary" %>

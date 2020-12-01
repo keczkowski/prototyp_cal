@@ -6,7 +6,7 @@
         <a href="<%= root_path %>">Strona Główna</a>
       </li>
       <li class="breadcrumb-item active">
-        <strong>Baza Pojęć</strong>
+        <strong>Baza Definicji</strong>
       </li>
     </ol>
   </div>
@@ -29,7 +29,7 @@
 <%= content_for :searchbar do %>
   <%= search_form_for @q, class: "navbar-form-custom" do |f| %>
     <div class="form-group">
-        <%= f.search_field :name_or_body_cont, placeholder: "Wyszukaj pojęcie", id: "top-search", class: "form-control" %>
+        <%= f.search_field :name_or_body_cont, placeholder: "Wyszukaj definicję", id: "top-search", class: "form-control" %>
     </div>
   <% end %>
 <% end %>
