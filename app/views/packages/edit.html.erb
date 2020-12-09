@@ -1,0 +1,31 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+  <div class="col-lg-10">
+    <h2>Edycja Pakietu</h2>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a href="<%= root_path %>">Strona Główna</a>
+      </li>
+      <li class="breadcrumb-item">
+        <a href="<%= packages_path %>">Pakiety</a>
+      </li>
+      <li class="breadcrumb-item">
+        <a href="<%= package_path(@package) %>"><%= @package.name %></a>
+      </li>
+      <li class="breadcrumb-item active">
+        <strong>Edycja Pakietu</strong>
+      </li>
+    </ol>
+  </div>
+</div>
+
+<div class="ibox">
+  <div class="ibox-title">
+    <h3>Edycja Pakietu</h3>
+    <div class="ibox-tools">
+
+    </div>
+  </div>
+  <div class="ibox-content">
+    <%= render 'form', package: @package %>
+  </div>
+</div>

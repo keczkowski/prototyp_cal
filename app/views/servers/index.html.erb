@@ -1,0 +1,57 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+  <div class="col-lg-10">
+    <h2>Serwery</h2>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a href="<%= root_path %>">Strona Główna</a>
+      </li>
+      <li class="breadcrumb-item active">
+        <strong>Serwery</strong>
+      </li>
+    </ol>
+  </div>
+</div>
+
+<div class="ibox">
+  <div class="ibox-title">
+    <h3>Serwery</h3>
+    <div class="ibox-tools">
+      <%= link_to new_server_path, class: "btn btn-sm btn-primary" do %>
+        <i class="fa fa-plus"></i> Dodaj serwer
+      <% end %>
+    </div>
+  </div>
+  <div class="ibox-content">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Pakiet</th>
+          <th>Nazwa</th>
+          <th>Powierzchnia</th>
+          <th>Status</th>
+          <th>Data płatności</th>
+          <th>Użytkownik</th>
+          <th width="180"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @servers.each do |server| %>
+          <tr>
+            <td><%= link_to server.package.name, server.package %></td>
+            <td><%= server.name %></td>
+            <td><%= server.disk_space %>/<%= server.package.disk_space %></td>
+            <td><%= server.paid == true ? "Opłacony" : "Nieopłacony" %></td>
+            <td><%= server.paid_date %></td>
+            <td><%= link_to server.user.name, server.user %></td>
+            <td>
+              <%= link_to 'Pokaż', server, class: "btn btn-sm btn-primary" %>
+              <%= link_to 'Edytuj', edit_server_path(server), class: "btn btn-sm btn-warning" %>
+              <%= link_to 'Usuń', server, method: :delete, data: { confirm: 'Czy na pewno usunąć?' }, class: "btn btn-sm btn-danger" %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

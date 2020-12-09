@@ -1,0 +1,51 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+  <div class="col-lg-10">
+    <h2><%= @package.name %></h2>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a href="<%= root_path %>">Strona Główna</a>
+      </li>
+      <li class="breadcrumb-item">
+        <a href="<%= packages_path %>">Pakiety</a>
+      </li>
+      <li class="breadcrumb-item active">
+        <strong><%= @package.name %></strong>
+      </li>
+    </ol>
+  </div>
+</div>
+
+<div class="ibox">
+  <div class="ibox-title">
+    <h3>Dane Pakietu</h3>
+    <div class="ibox-tools">
+      <%= link_to 'Edycja', edit_package_path(@package), class: "btn btn-sm btn-primary" %>
+      <%= link_to 'Cofnij', packages_path, class: "btn btn-sm btn-primary" %>
+    </div>
+  </div>
+  <div class="ibox-content">
+    <div class="row">
+      <div class="col-sm-4">
+        <p>
+          <strong>Nazwa</strong><br />
+          <%= @package.name %>
+        </p>
+        <p>
+          <strong>Powierzchnia</strong><br />
+          <%= @package.disk_space %>
+        </p>
+        <p>
+          <strong>Cena</strong><br />
+          <%= @package.price %>
+        </p>
+
+      </div>
+      <div class="col-sm-4">
+
+      </div>
+      <div class="col-sm-4">
+
+      </div>
+    </div>
+  </div>
+</div>

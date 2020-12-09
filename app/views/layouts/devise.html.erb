@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>SŁOWNIK POJĘĆ - Politechnika Poznańska</title>
+    <title>PANEL KLIENTA</title>
 
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -23,14 +23,8 @@
 
 <body class="gray-bg">
 
-  <!-- Main view  -->
-  <div class="row">
-    <div class="col-sm-4 offset-4">
-      <%= flash_messages %>
-      <%= yield %>
-    </div>
-
-  </div>
+  <%= flash_messages %>
+  <%= yield %>
 
 
   <!-- Include javascript per-view -->

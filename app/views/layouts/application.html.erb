@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Słownik | slownik.cal.pl</title>
+    <title>PANEL KLIENTA</title>
 
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -21,36 +21,12 @@
 </head>
 <body>
 
-    <!-- Wrapper-->
-    <div id="wrapper" class="<%= params[:controller] %>.<%= params[:action] %>">
+    <%= flash_messages %>
 
-        <!-- Navigation -->
-        <%= render 'layouts/navigation' %>
+    <!-- Main view  -->
+    <%= yield %>
 
-        <!-- Page wraper -->
-        <div id="page-wrapper" class="wrapper wrapper-content gray-bg <%= @extra_class %> wrapper">
-
-            <!-- Page wrapper -->
-            <%= render 'layouts/topnavbar' %>
-
-            <%= flash_messages %>
-
-            <!-- Main view  -->
-              <%= yield %>
-
-            <!-- Footer -->
-            <%= render 'layouts/footer' %>
-
-        </div>
-        <!-- End page wrapper-->
-
-    </div>
-    <!-- End wrapper-->
-
-    <!-- Include javascript per-view -->
-    <!-- For demo purpose we include javascript in view but you can easily start SeedProject and organize it with Rails asset pipeline as you want -->
     <%= yield :javascript %>
-
 
 </body>
 </html>

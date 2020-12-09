@@ -1,0 +1,53 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+  <div class="col-lg-10">
+    <h2><%= @domain.name %></h2>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a href="<%= root_path %>">Strona Główna</a>
+      </li>
+      <li class="breadcrumb-item">
+        <a href="<%= domains_path %>">Domeny</a>
+      </li>
+      <li class="breadcrumb-item active">
+        <strong><%= @domain.name %></strong>
+      </li>
+    </ol>
+  </div>
+</div>
+
+<div class="ibox">
+  <div class="ibox-title">
+    <h3>Dane domeny</h3>
+    <div class="ibox-tools">
+      <%= link_to 'Edycja', edit_domain_path(@domain), class: "btn btn-sm btn-primary" %>
+      <%= link_to 'Cofnij', domains_path, class: "btn btn-sm btn-primary" %>
+    </div>
+  </div>
+  <div class="ibox-content">
+    <div class="row">
+      <div class="col-sm-4">
+        <p>
+          <strong>Nazwa</strong><br />
+          <%= @domain.name %>
+        </p>
+        <p>
+          <strong>Serwer</strong><br />
+          <%= link_to @domain.server.name, @domain.server %>
+        </p>
+        <p>
+          <strong>Użytkownik</strong><br />
+          <%= link_to @domain.user.name, @domain.user %>
+        </p>
+      </div>
+      <div class="col-sm-4">
+        <p>
+          <strong>Data utworzenia</strong><br />
+          <%= @domain.created_at %>
+        </p>
+      </div>
+      <div class="col-sm-4">
+
+      </div>
+    </div>
+  </div>
+</div>

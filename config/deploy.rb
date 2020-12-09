@@ -1,8 +1,8 @@
 # config valid for current version and patch releases of Capistrano
 lock "~> 3.14.1"
 
-set :application, "pp"
-set :repo_url, "git@github.com:keczkowski/pp.git"
+set :application, "prototyp_cal"
+set :repo_url, "git@github.com:keczkowski/prototyp_cal.git"
 
 # Deploy to the user's home directory
 set :deploy_to, "/home/ubuntu/#{fetch :application}"

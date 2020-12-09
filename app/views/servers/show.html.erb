@@ -1,0 +1,65 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+  <div class="col-lg-10">
+    <h2><%= @server.name %></h2>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a href="<%= root_path %>">Strona Główna</a>
+      </li>
+      <li class="breadcrumb-item">
+        <a href="<%= servers_path %>">Serwery</a>
+      </li>
+      <li class="breadcrumb-item active">
+        <strong><%= @server.name %></strong>
+      </li>
+    </ol>
+  </div>
+</div>
+
+<div class="ibox">
+  <div class="ibox-title">
+    <h3>Dane serwera</h3>
+    <div class="ibox-tools">
+      <%= link_to 'Edycja', edit_server_path(@server), class: "btn btn-sm btn-primary" %>
+      <%= link_to 'Cofnij', servers_path, class: "btn btn-sm btn-primary" %>
+    </div>
+  </div>
+  <div class="ibox-content">
+    <div class="row">
+      <div class="col-sm-4">
+        <p>
+          <strong>Nazwa</strong><br />
+          <%= @server.name %>
+        </p>
+        <p>
+          <strong>Pakiet</strong><br />
+          <%= link_to @server.package.name, @server.package %>
+        </p>
+        <p>
+          <strong>Powierzchnia</strong><br />
+          <%= @server.disk_space %>/<%= @server.package.disk_space %>
+        </p>
+        <p>
+          <strong>Status</strong><br />
+          <%= @server.paid == true ? "Opłacony" : "Nieopłacony" %>
+        </p>
+      </div>
+      <div class="col-sm-4">
+        <p>
+          <strong>Użytkownik</strong><br />
+          <%= link_to @server.user.name, @server.user %>
+        </p>
+        <p>
+          <strong>Data utworzenia</strong><br />
+          <%= @server.created_at %>
+        </p>
+        <p>
+          <strong>Data płatności</strong><br />
+          <%= @server.paid_date %>
+        </p>
+      </div>
+      <div class="col-sm-4">
+
+      </div>
+    </div>
+  </div>
+</div>

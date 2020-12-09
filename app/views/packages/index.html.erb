@@ -1,0 +1,53 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+  <div class="col-lg-10">
+    <h2>Pakiety</h2>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a href="<%= root_path %>">Strona Główna</a>
+      </li>
+      <li class="breadcrumb-item active">
+        <strong>Pakiety</strong>
+      </li>
+    </ol>
+  </div>
+</div>
+
+<div class="ibox">
+  <div class="ibox-title">
+    <h3>Pakiety</h3>
+    <div class="ibox-tools">
+      <%= link_to new_package_path, class: "btn btn-sm btn-primary" do %>
+        <i class="fa fa-plus"></i> Dodaj Pakiet
+      <% end %>
+    </div>
+  </div>
+  <div class="ibox-content">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Nazwa</th>
+          <th>Powierzchnia</th>
+          <th>Cena</th>
+          <th>Opis</th>
+          <th width="180"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @packages.each do |package| %>
+          <tr>
+            <td><%= package.name %></td>
+            <td><%= package.disk_space %></td>
+            <td><%= package.price %></td>
+            <td><%= package.body %></td>
+            <td>
+              <%= link_to 'Pokaż', package, class: "btn btn-sm btn-primary" %>
+              <%= link_to 'Edytuj', edit_package_path(package), class: "btn btn-sm btn-warning" %>
+              <%= link_to 'Usuń', package, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-danger" %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

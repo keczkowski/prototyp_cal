@@ -1,0 +1,51 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+  <div class="col-lg-10">
+    <h2>Domeny</h2>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a href="<%= root_path %>">Strona Główna</a>
+      </li>
+      <li class="breadcrumb-item active">
+        <strong>Domeny</strong>
+      </li>
+    </ol>
+  </div>
+</div>
+
+<div class="ibox">
+  <div class="ibox-title">
+    <h3>Domeny</h3>
+    <div class="ibox-tools">
+      <%= link_to new_domain_path, class: "btn btn-sm btn-primary" do %>
+        <i class="fa fa-plus"></i> Dodaj domenę
+      <% end %>
+    </div>
+  </div>
+  <div class="ibox-content">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Nazwa</th>
+          <th>Serwer</th>
+          <th>Użytkownik</th>
+          <th width="180"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @domains.each do |domain| %>
+          <tr>
+            <td><%= domain.name %></td>
+            <td><%= link_to domain.server.name, domain.server %></td>
+            <td><%= link_to domain.user.name, domain.user %></td>
+            <td>
+              <%= link_to 'Pokaż', domain, class: "btn btn-sm btn-primary" %>
+              <%= link_to 'Edytuj', edit_domain_path(domain), class: "btn btn-sm btn-warning" %>
+              <%= link_to 'Usuń', domain, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-danger" %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

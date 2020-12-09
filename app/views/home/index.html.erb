@@ -1,14 +1,468 @@
-<div class="wrapper wrapper-content animated fadeInRight">
+
+<!-- NAGŁOWEK GÓRNY -->
+<div class="container-fluid">
     <div class="row">
-        <div class="col-lg-12">
-            <div class="text-center m-t-lg">
-                <h1>
-                    <%= @mainTitle %>
-                </h1>
-                <small>
-                    <%= @mainDesc %>
-                </small>
-            </div>
+      <div class="col-12 col-lg-6 text-center text-lg-left">
+        <%= image_tag "menu/logo-cal.svg", alt: "Logo-cal.pl", class: "main-logo" %>
+        <span class="logo-text">Panel</span>
+      </div>
+      <div class="col-6 col-lg-3 col-xl-4">
+        <form class="form-inline d-flex justify-content-center md-form form-sm search-menu">
+        <input class="form-control form-control-sm mr-3 input-search-box" type="text" placeholder="wyszukiwarka domen, serwerów, funkcjonalności, tematów pomocy
+        " aria-label="Search">
+        <button type="submit" class="search-submit"><i class="fa fa-search search-icon "></i></button>
+        </form>
+      </div>
+      <div class="col-6 col-lg-3 col-xl-2 px-0 ">
+        <div class="dropdown menu-droopdown ">
+          <button class="btn drop-menu dropdown-toggle w-100 text-left " type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fa fa-user user-icon-menu"></i>
+                <span class="first-name-droop"><%= current_user.name %>.</span><br>
+                <span class="first-email-droop"><%= current_user.email %></span>
+          </button>
+          <div class="dropdown-menu sub-menu-user" aria-labelledby="dropdownMenu2">
+            <button class="dropdown-item btn-user-sub-menu" type="button">Twoje konto</button>
+            <button class="dropdown-item btn-user-sub-menu" type="button"><i class="fa fa-envelope-open mr-3"></i>poczta.cal.pl</button>
+            <button class="dropdown-item btn-user-sub-menu" type="button">wyloguj się</button>
+          </div>
         </div>
+      </div>
     </div>
+</div>
+
+
+<!-- KONTENER/BOX NA CIAŁO STRONY ORAZ BOCZNE MENU-->
+<div class="main-page">
+
+<!-- wrapper CIAŁO STRONY ORAZ BOCZNE MENU-->
+  <div class="wrapper mt-5">
+
+    <!-- sidebar BOCZNE MENU -->
+    <nav id="sidebar" class="">
+       <div class="sticky-top">
+        <ul class="list-unstyled components slide-menu-list sticky-top">
+          <li>
+              <a href="#" ><i class="fa fa-gift slide-menu-icon"></i>Oferty</a>
+          </li>
+          <li>
+            <li>
+              <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-server slide-menu-icon"></i>Serwery i hosting</a>
+              <ul class="collapse list-unstyled" id="pageSubmenu">
+                <li>
+                    <a href="#" class="main-menu-sublink">Lista serwerów</a>
+                </li>
+                <li>
+                    <a href="#" class="main-menu-sublink">Nowy serwer</a>
+                </li>
+                <li>
+                    <a href="#" class="main-menu-sublink">Usługi dodatkowe</a>
+                </li>
+                <li>
+                  <a href="#" class="main-menu-sublink">Usługi dodatkowe</a>
+                </li>
+                <li>
+                  <a href="#" class="main-menu-sublink"><i class="fa fa-soundcloud mr-2"></i>Cloudflare</a>
+                </li>
+                <li>
+                 <a href="#" class="main-menu-sublink">Kreator stron www <i class="fa fa-external-link ml-2"></i></a>
+                </li>
+              </ul>
+            </li>
+          </li>
+
+          <li>
+            <a href="#"><i class="fa fa-globe slide-menu-icon"></i>Domeny internetowe</a>
+          </li>
+          <li>
+            <a href="#"><i class="fa fa-smile-o slide-menu-icon"></i>Usługi internetowe</a>
+          </li>
+          <li>
+            <a href="#"><i class="fa fa-sticky-note slide-menu-icon"></i>Płatności i faktury</a>
+          </li>
+        </ul>
+
+        <p class="slide-menu-title-p sticky-top">
+          POTRZEBNA POMOC ?
+        </p>
+        <p class="slide-menu-phone-p">
+          <i class="fa fa-phone slide-menu-footer-icon"></i>+48 61 679 21 75
+        </p>
+        <p class="slide-menu-mail-p">
+          <i class="fa fa-envelope-open slide-menu-footer-icon"></i>pomoc@cal.pl
+        </p>
+        <p class="slide-menu-contact-p">
+          <a href="#"><i class="fa fa-sticky-note-o slide-menu-footer-icon"></i>Formularz kontaktowy</a>
+        </p>
+        <p class="slide-menu-pp-p">
+          <a href="#"><i class="fa fa-handshake-o slide-menu-footer-icon"></i>Program partnerski</a>
+        </p>
+      </div>
+    </nav>
+
+
+    <!-- page-content GŁÓWNY BOX Z ZAWARTOŚCIĄ STRONY KTÓRY NALEZY PODMIENIAĆ W ZALEŻNOŚCI OD PODSTRONY -->
+    <div id="page-content">
+
+      <!-- TUTAJ JEST PRZEYCISK DO CHOWANIA ORAZ WYSÓWANIA MEBU BOCZNEGO, TEŻ MUSI ZNAJDOWAĆ SIĘ W KAŻDYM BOX-E Z ZAWARTOŚCIĄ -->
+      <nav class="navbar navbar-expand-lg  sticky-top ">
+          <div class="container-fluid">
+              <button type="button" id="sidebarCollapse" class="btn menu-hamburger">
+                  <span><i class="fa fa-exchange"></i></span>
+              </button>
+          </div>
+      </nav>
+
+
+      <!-- PONIŻEJ TREŚĆ KTÓRĄ NALEŻY PODMIENIAĆ BO DLA KAŻDEJ PODSTRONY JEST INNA -->
+      <div class="container-fluid ">
+       <div class="row">
+         <div class="col-12">
+            <p class="box-title-header">
+              Panel klienta
+            </p>
+         </div>
+
+
+
+         <!-- CAŁY RZĄD Z FAKTURAMI ORAZ CHECKBOXEM DO OPŁACENIA -->
+         <div class="col-12 col-lg-10 main-bills-box">
+          <form>
+            <div class="row">
+              <div class="col-6 col-lg-2">
+                <p class="main-header-bills">Tytuł płatności</p>
+                <p class="main-body-bills">Pro forma</p>
+              </div>
+              <div class="col-6 col-lg-2">
+                <p class="main-header-bills">Numer</p>
+                <p class="main-body-bills">123/pf/2020</p>
+              </div>
+              <div class="col-6 col-lg-2">
+                <p class="main-header-bills">Data</p>
+                <p class="main-body-bills">20.10.2020 r.</p>
+              </div>
+              <div class="col-6 col-lg-2">
+                <p class="main-header-bills">Kwota</p>
+                <p class="main-body-bills">49.90 zł</p>
+              </div>
+              <div class="col-6 col-lg-2">
+                <p class="main-header-bills">Zaznacz</p>
+                <div class="form-check">
+                  <input class="form-check-input check-bill" type="checkbox" value="" id="pay-bill">
+                </div>
+              </div>
+              <div class="col-6 col-lg-2">
+                <p class="main-header-bills">Operacje</p>
+                <button type="submit" class="btn submit-bill">Opłać</button>
+              </div>
+            </div>
+          </form>
+         </div>
+
+       </div>
+
+
+
+       <!-- STREFA SERWERÓW -->
+
+       <div class="row">
+         <div class="col-12 main-title-servers-zone">
+           <p class="zone-server-title">
+             Serwery <span class="close-icon-servers"><i class="fa fa-window-close"></i></span>
+           </p>
+         </div>
+        <div class="col-12 col-lg-3">
+          <div class="server-box">
+            <div class="row">
+              <div class="col-4 text-center">
+                <i class="fa fa-rocket server-rocket"></i>
+              </div>
+              <div class="col-8">
+                <p class="main-title-server">
+                  sebamx
+                </p>
+                <p class="main-subtitle-server">
+                  Ace
+                </p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-7">
+                <p class="main-server-space">
+                  MIEJSCE NA SERWERZE
+                </p>
+                <p class="main-server-value-space">
+                  <span class="value-green">7</span>/20 <b>GB</b>
+                </p>
+                <p class="main-server-progres-space">
+                  <progress class="space-progres green" value="7" max="20"> 7/20</progress>
+                </p>
+              </div>
+              <div class="col-5 text-center ">
+                <p class="status-bill-paid">
+                  OPŁACONY
+                </p>
+                <p class="manage-bill">
+                  <a href="#">Zarządzaj</a>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-lg-3">
+          <div class="server-box">
+            <div class="row">
+              <div class="col-4 text-center">
+                <i class="fa fa-rocket server-rocket"></i>
+              </div>
+              <div class="col-8">
+                <p class="main-title-server">
+                  michael
+                </p>
+                <p class="main-subtitle-server">
+                  Ace Turbo
+                </p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-7">
+                <p class="main-server-space">
+                  MIEJSCE NA SERWERZE
+                </p>
+                <p class="main-server-value-space">
+                  <span class="value-red">247</span>/250 <b>GB</b>
+                </p>
+                <p class="main-server-progres-space">
+                  <progress class="space-progres red" value="247" max="250"> 247/250</progress>
+                </p>
+              </div>
+              <div class="col-5 text-center ">
+                <p class="status-bill-not-paid">
+                  NIEOPŁACONY
+                </p>
+                <p class="manage-bill">
+                  <a href="#">Zarządzaj</a>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 col-lg-3">
+          <div class="server-box">
+            <div class="row">
+              <div class="col-4 text-center">
+                <i class="fa fa-rocket server-rocket"></i>
+              </div>
+              <div class="col-8">
+                <p class="main-title-server">
+                  maxshop
+                </p>
+                <p class="main-subtitle-server">
+                  Ace Extra
+                </p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-7">
+                <p class="main-server-space">
+                  MIEJSCE NA SERWERZE
+                </p>
+                <p class="main-server-value-space">
+                  <span class="value-green">19</span>/40 <b>GB</b>
+                </p>
+                <p class="main-server-progres-space">
+                  <progress class="space-progres green" value="19" max="40"> 19/40</progress>
+                </p>
+              </div>
+              <div class="col-5 text-center ">
+                <p class="status-bill-paid">
+                  OPŁACONY
+                </p>
+                <p class="manage-bill">
+                  <a href="#">Zarządzaj</a>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-1">
+          <div class="link-box-server ">
+            <a href="#"><span class="clickable"><i class="fa fa-chevron-right xxx"></i></span></a>
+          </div>
+        </div>
+
+       </div>
+
+
+<!-- STREFA DOMEN -->
+      <div class="row">
+        <div class="col-12 main-title-domains-zone">
+          <p class="zone-server-title">
+            Domeny <span class="close-icon-domains"><i class="fa fa-window-close"></i></span>
+          </p>
+        </div>
+
+        <div class="col-12 col-lg-8 ">
+          <div class="domains-box">
+          <div class="row p-2">
+
+            <div class="col-6 special-border-right">
+              <div class="row">
+                <div class="col-12 col-md-8 ">
+                  <p class="element-list-domain">
+                    <span class="domain-name-list">olczakowski</span>.<span class="ending-list-domain">pl</span>
+                  </p>
+                </div>
+                <div class="col-12 col-md-4 manage-list-domain">
+                  <a href="#">Zarządzaj</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-6 special-border-right">
+              <div class="row">
+                <div class="col-12 col-md-8 ">
+                  <p class="element-list-domain">
+                    <span class="domain-name-list">mozambik</span>.<span class="ending-list-domain">ru</span>
+                  </p>
+                </div>
+                <div class="col-12 col-md-4 manage-list-domain">
+                  <a href="#">Zarządzaj</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-6 special-border-right">
+              <div class="row">
+                <div class="col-12 col-md-8 ">
+                  <p class="element-list-domain">
+                    <span class="domain-name-list">krawiec</span>.<span class="ending-list-domain">eu</span>
+                  </p>
+                </div>
+                <div class="col-12 col-md-4 manage-list-domain">
+                  <a href="#">Zarządzaj</a>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="col-6 special-border-right">
+              <div class="row">
+                <div class="col-12 col-md-8 ">
+                  <p class="element-list-domain">
+                    <span class="domain-name-list">sp22</span>.<span class="ending-list-domain">edu.pl</span>
+                  </p>
+                </div>
+                <div class="col-12 col-md-4 manage-list-domain">
+                  <a href="#">Zarządzaj</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-6 special-border-right">
+              <div class="row">
+                <div class="col-12 col-md-8 ">
+                  <p class="element-list-domain">
+                    <span class="domain-name-list">crafterbox</span>.<span class="ending-list-domain">pl</span>
+                  </p>
+                </div>
+                <div class="col-12 col-md-4 manage-list-domain">
+                  <a href="#">Zarządzaj</a>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="col-6 special-border-right">
+              <div class="row">
+                <div class="col-12 col-md-8 ">
+                  <p class="element-list-domain">
+                    <span class="domain-name-list">cal</span>.<span class="ending-list-domain">pl</span>
+                  </p>
+                </div>
+                <div class="col-12 col-md-4 manage-list-domain">
+                  <a href="#">Zarządzaj</a>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+          </div>
+        </div>
+      </div>
+
+
+
+      <!-- STREFA USŁUG DODATKOWYCH -->
+
+      <div class="row">
+        <div class="col-12 main-title-servers-zone">
+          <p class="zone-adds-service-title">
+            Usługi dodatkowe <span class="close-icon-domains"><i class="fa fa-window-close"></i></span>
+          </p>
+        </div>
+
+        <div class="col-12 col-md-6 col-xl-3">
+          <div class="add-services-box">
+            <p class="title-content-add-services">
+              Zamów certyfikaty SSL
+            </p>
+            <p class="content-add-services">
+              Bezpieczeństwo i wiarygodność to niezwykle ważne elementy dzisiejszego Internetu. Certyfikat SSL pozwoli Tobie i Twoim klientom zachować pełną ochronę podczas procesu przepływu informacji pomiędzy użytkownikiem, a serwerem. Strony zabezpieczone certyfikatem rozpoznasz po znajdującej się w pasku adresu kłódce, protokole https:// w przeglądarce internetowej.
+            </p>
+            <p class="button-add-services text-center mt-5">
+              <a href="#">Zobacz ofertę <i class="fa fa-arrow-right"></i></a>
+            </p>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6 col-xl-3">
+          <div class="add-services-box">
+            <p class="title-content-add-services">
+              Oprogramowanie antywirusowe G Data
+            </p>
+            <p class="content-add-services">
+              G Data rekordowo szybko reaguje na nowe zagrożenia, gwarantując najwyższy poziom ochrony podczas przeglądania stron WWW. Rozpoznaje i blokuje wirusy, rootkity, robaki, spyware, trojany i backdoory. Możesz bezpoecznie wykonywać czynności związane z bankowością internetową. Zabeczpiecz komputer niebezpiecznymi programami, hakerami i spamem.
+            </p>
+            <p class="button-add-services text-center mt-5">
+              <a href="#">Zobacz ofertę <i class="fa fa-arrow-right"></i></a>
+            </p>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-6 col-xl-3">
+          <div class="add-services-box">
+            <p class="title-content-add-services">
+              Zestaw 150 mocnych linków SEO
+            </p>
+            <p class="content-add-services">
+              Podstawę strategii umiejętnego linkowania stanowi dziś przede wszystkim jego dywersyfikacja. Dotyczy to zarówno pochodzenia źródła odnośników, sposobów ich zdobywania, jak i rodzajów umieszczanych linków. Dlatego też oferujemy Ci skuteczny zestaw!
+            </p>
+            <p class="button-add-services text-center mt-5">
+              <a href="#">Zobacz ofertę <i class="fa fa-arrow-right"></i></a>
+            </p>
+          </div>
+        </div>
+
+
+        <div class="col-1">
+          <div class="link-box-server ">
+            <a href="#"><span class="clickable"><i class="fa fa-chevron-right xxx"></i></span></a>
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+
+      </div>
+  </div>
+
+</div>
+
 </div>

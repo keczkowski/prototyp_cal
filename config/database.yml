@@ -7,13 +7,13 @@ default: &default
 
 development:
   <<: *default
-  database: pp_development
+  database: prototyp_cal_development
 
 production:
   adapter: mysql2
   encoding: utf8
   host: 51.68.137.244
   pool: 5
-  database: pp
+  database: prototyp_cal
   username: user
   password: Stabilox123

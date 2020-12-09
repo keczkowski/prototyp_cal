@@ -6,18 +6,6 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def has_access_to_concepts
-    unless current_user.present? and current_user.verified == true and current_user.access_concepts == true
-      redirect_to root_path
-    end
-  end
-
-  def has_access_to_tags
-    unless current_user.present? and current_user.verified == true and current_user.access_tags == true
-      redirect_to root_path
-    end
-  end
-
   def has_access_to_users
     unless current_user.present? and current_user.verified == true and current_user.access_users == true
       redirect_to root_path

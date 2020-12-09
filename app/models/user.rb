@@ -6,7 +6,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :lockable, :trackable, :confirmable
 
-
-
-  has_many :concepts
+  has_many :servers
+  has_many :domains
 end

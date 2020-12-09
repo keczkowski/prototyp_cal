@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-
-  resources :tags
-  resources :concepts
+  resources :domains
+  resources :servers
+  resources :packages
   resources :users
 
   devise_for :users, path: 'auth', path_names: { sign_in: 'login',
@@ -13,7 +13,6 @@ Rails.application.routes.draw do
                                                sign_up: 'signup' }
 
   get "home/index"
-
   root to: 'home#index'
 
 end
