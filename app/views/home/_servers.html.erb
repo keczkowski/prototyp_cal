@@ -1,0 +1,61 @@
+<div class="row">
+
+  <div class="col-12 main-title-servers-zone">
+    <p class="zone-server-title">
+      Serwery <span class="close-icon-servers"><i class="fa fa-window-close"></i></span>
+    </p>
+  </div>
+  <% @servers.each do |server| %>
+  <div class="col-12 col-lg-3">
+    <div class="server-box">
+      <div class="row">
+        <div class="col-4 text-center">
+          <i class="fa fa-rocket server-rocket"></i>
+        </div>
+        <div class="col-8">
+          <p class="main-title-server">
+            <%= server.name %>
+          </p>
+          <p class="main-subtitle-server">
+            <%= server.package.name %>
+          </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-7">
+          <p class="main-server-space">
+            MIEJSCE NA SERWERZE
+          </p>
+          <p class="main-server-value-space">
+            <span class="value-green"><%= server.disk_space %></span>/<%= server.package.disk_space %> <b>GB</b>
+          </p>
+          <p class="main-server-progres-space">
+            <progress class="space-progres green" value="<%= server.disk_space %>" max="<%= server.package.disk_space %>"> <%= server.disk_space %>/<%= server.package.disk_space %></progress>
+          </p>
+        </div>
+        <div class="col-5 text-center ">
+          <% if server.paid == true %>
+          <p class="status-bill-paid">
+            OPŁACONY
+          </p>
+          <% else %>
+          <p class="status-bill-not-paid">
+            NIEOPŁACONY
+          </p>
+          <% end %>
+          <p class="manage-bill">
+            <a href="#">Zarządzaj</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% end %>
+
+  <div class="col-1">
+    <div class="link-box-server ">
+      <a href="#"><span class="clickable"><i class="fa fa-chevron-right xxx"></i></span></a>
+    </div>
+  </div>
+
+</div>

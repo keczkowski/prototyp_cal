@@ -1,0 +1,28 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+  <div class="col-lg-10">
+    <h2>Nowa Płatność</h2>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a href="<%= root_path %>">Strona Główna</a>
+      </li>
+      <li class="breadcrumb-item">
+        <a href="<%= payments_path %>">Płatności</a>
+      </li>
+      <li class="breadcrumb-item active">
+        <strong>Nowa Płatność</strong>
+      </li>
+    </ol>
+  </div>
+</div>
+
+<div class="ibox">
+  <div class="ibox-title">
+    <h3>Nowa Płatność</h3>
+    <div class="ibox-tools">
+
+    </div>
+  </div>
+  <div class="ibox-content">
+    <%= render 'form', payment: @payment %>
+  </div>
+</div>
