@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Additional Services</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Body</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @additional_services.each do |additional_service| %>
+      <tr>
+        <td><%= additional_service.name %></td>
+        <td><%= additional_service.body %></td>
+        <td><%= link_to 'Show', additional_service %></td>
+        <td><%= link_to 'Edit', edit_additional_service_path(additional_service) %></td>
+        <td><%= link_to 'Destroy', additional_service, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Additional Service', new_additional_service_path %>

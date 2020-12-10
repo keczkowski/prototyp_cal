@@ -8,12 +8,12 @@
   <div class="col-12 col-lg-8 ">
     <div class="domains-box">
       <div class="row p-2">
-
+        <% current_user.domains.each do |domain| %>
         <div class="col-6 special-border-right">
           <div class="row">
             <div class="col-12 col-md-8 ">
               <p class="element-list-domain">
-                <span class="domain-name-list">olczakowski</span>.<span class="ending-list-domain">pl</span>
+                <span class="domain-name-list"><%= domain.name %></span>
               </p>
             </div>
             <div class="col-12 col-md-4 manage-list-domain">
@@ -21,75 +21,7 @@
             </div>
           </div>
         </div>
-
-        <div class="col-6 special-border-right">
-          <div class="row">
-            <div class="col-12 col-md-8 ">
-              <p class="element-list-domain">
-                <span class="domain-name-list">mozambik</span>.<span class="ending-list-domain">ru</span>
-              </p>
-            </div>
-            <div class="col-12 col-md-4 manage-list-domain">
-              <a href="#">Zarządzaj</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-6 special-border-right">
-          <div class="row">
-            <div class="col-12 col-md-8 ">
-              <p class="element-list-domain">
-                <span class="domain-name-list">krawiec</span>.<span class="ending-list-domain">eu</span>
-              </p>
-            </div>
-            <div class="col-12 col-md-4 manage-list-domain">
-              <a href="#">Zarządzaj</a>
-            </div>
-          </div>
-        </div>
-
-
-        <div class="col-6 special-border-right">
-          <div class="row">
-            <div class="col-12 col-md-8 ">
-              <p class="element-list-domain">
-                <span class="domain-name-list">sp22</span>.<span class="ending-list-domain">edu.pl</span>
-              </p>
-            </div>
-            <div class="col-12 col-md-4 manage-list-domain">
-              <a href="#">Zarządzaj</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-6 special-border-right">
-          <div class="row">
-            <div class="col-12 col-md-8 ">
-              <p class="element-list-domain">
-                <span class="domain-name-list">crafterbox</span>.<span class="ending-list-domain">pl</span>
-              </p>
-            </div>
-            <div class="col-12 col-md-4 manage-list-domain">
-              <a href="#">Zarządzaj</a>
-            </div>
-          </div>
-        </div>
-
-
-        <div class="col-6 special-border-right">
-          <div class="row">
-            <div class="col-12 col-md-8 ">
-              <p class="element-list-domain">
-                <span class="domain-name-list">cal</span>.<span class="ending-list-domain">pl</span>
-              </p>
-            </div>
-            <div class="col-12 col-md-4 manage-list-domain">
-              <a href="#">Zarządzaj</a>
-            </div>
-          </div>
-        </div>
-
-
+        <% end %>
       </div>
     </div>
   </div>

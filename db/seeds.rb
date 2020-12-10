@@ -3,6 +3,18 @@ User.destroy_all
 Payment.destroy_all
 Server.destroy_all
 Domain.destroy_all
+Package.destroy_all
+AdditionalService.destroy_all
+
+# packages
+Package.create(name: "Ace", disk_space: 20, price: 99, body: "")
+Package.create(name: "Ace Extra", disk_space: 40, price: 149, body: "")
+Package.create(name: "Ace Pro", disk_space: 100, price: 399, body: "")
+Package.create(name: "Ace turbo", disk_space: 250, price: 899, body: "")
+
+AdditionalService.create(name: "Zamów certyfikaty SSL", body: "Bezpieczeństwo i wiarygodność to niezwykle ważne elementy dzisiejszego Internetu. Certyfikat SSL pozwoli Tobie i Twoim klientom zachować pełną ochronę podczas procesu przepływu informacji pomiędzy użytkownikiem, a serwerem. Strony zabezpieczone certyfikatem rozpoznasz po znajdującej się w pasku adresu kłódce, protokole https:// w przeglądarce internetowej.")
+AdditionalService.create(name: "Oprogramowanie wirusowe G Data", body: "G Data rekordowo szybko reaguje na nowe zagrożenia, gwarantując najwyższy poziom ochrony podczas przeglądania stron WWW. Rozpoznaje i blokuje wirusy, rootkity, robaki, spyware, trojany i backdoory. Możesz bezpoecznie wykonywać czynności związane z bankowością internetową. Zabeczpiecz komputer niebezpiecznymi programami, hakerami i spamem.")
+AdditionalService.create(name: "Zestaw 150 mocnych linków SEO", body: "Podstawę strategii umiejętnego linkowania stanowi dziś przede wszystkim jego dywersyfikacja. Dotyczy to zarówno pochodzenia źródła odnośników, sposobów ich zdobywania, jak i rodzajów umieszczanych linków. Dlatego też oferujemy Ci skuteczny zestaw!")
 
 # first user
 user = User.create(
