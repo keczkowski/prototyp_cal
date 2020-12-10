@@ -7,6 +7,14 @@ GIT
       activesupport (>= 5.2.4)
       i18n
 
+GIT
+  remote: https://github.com/faker-ruby/faker.git
+  revision: ec06d217644cf3d66bd0e658c9b168af8f0c38c7
+  branch: master
+  specs:
+    faker (2.15.1)
+      i18n (>= 1.6, < 2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -301,6 +309,7 @@ DEPENDENCIES
   carrierwave (~> 2.0)
   devise
   ed25519 (>= 1.2, < 2.0)
+  faker!
   font-awesome-rails
   jbuilder (~> 2.7)
   kaminari

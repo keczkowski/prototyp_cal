@@ -4,7 +4,8 @@ class PackagesController < ApplicationController
   # GET /packages
   # GET /packages.json
   def index
-    @packages = Package.all
+    @q = Package.ransack(params[:q])
+    @packages = @q.result(distinct: true).page params[:page]
   end
 
   # GET /packages/1

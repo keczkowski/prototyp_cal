@@ -25,10 +25,11 @@
     <table class="table">
       <thead>
         <tr>
-          <th>Tytuł płatności</th>
+          <th><%= sort_link(@q, :title, "Tytuł płatności") %></th>
           <th>Nazwa</th>
           <th>Termin</th>
           <th>Kwota</th>
+          <th>Użytkownik</th>
           <th width="180"></th>
         </tr>
       </thead>
@@ -40,6 +41,7 @@
           <td><%= payment.name %></td>
           <td><%= payment.deadline %></td>
           <td><%= payment.price %></td>
+          <td><%= link_to payment.user.name, payment.user if payment.user.present? %></td>
           <td>
             <%= link_to 'Pokaż', payment, class: "btn btn-sm btn-primary" %>
             <%= link_to 'Edytuj', edit_payment_path(payment), class: "btn btn-sm btn-warning" %>
@@ -49,5 +51,6 @@
         <% end %>
       </tbody>
     </table>
+    <%= paginate @payments %>
   </div>
 </div>

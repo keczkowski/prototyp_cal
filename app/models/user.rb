@@ -8,4 +8,7 @@ class User < ApplicationRecord
 
   has_many :servers
   has_many :domains
+  has_many :payments
+
+  paginates_per 10
 end

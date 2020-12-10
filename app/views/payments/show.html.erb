@@ -41,6 +41,10 @@
       </div>
       <div class="col-sm-4">
         <p>
+          <strong>Użytkownik</strong><br />
+          <%= link_to @payment.user.name, @payment.user %>
+        </p>
+        <p>
           <strong>Kwota</strong><br />
           <%= @payment.price %>
         </p>

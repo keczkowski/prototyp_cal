@@ -83,10 +83,58 @@
   <div class="ibox-title">
     <h3>Powiązane usługi</h3>
     <div class="ibox-tools">
-
     </div>
   </div>
   <div class="ibox-content">
-    Serwery, płatności, domeny
+    <table class="table">
+      <tr>
+        <th>Pakiet</th>
+        <th>Nazwa</th>
+        <th>Powierzchnia</th>
+        <th>Status</th>
+        <th>Domeny</th>
+      </tr>
+      <% @user.servers.each do |server| %>
+      <tr>
+        <td><%= server.package.name %></td>
+        <td><%= link_to server.name, server %></td>
+        <td><%= server.disk_space %>/<%= server.package.disk_space %></td>
+        <td><%= server.paid == true ? "OPŁACONY" : "NIEOPŁACONY" %></td>
+        <td>
+          <ul>
+            <% server.domains.each do |domain| %>
+              <li><%= link_to domain.name, domain %></li>
+            <% end %>
+          </ul>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<div class="ibox">
+  <div class="ibox-title">
+    <h3>Płatności</h3>
+    <div class="ibox-tools">
+    </div>
+  </div>
+  <div class="ibox-content">
+    <table class="table">
+      <tr>
+        <th>Tytuł</th>
+        <th>Nazwa</th>
+        <th>Kwota</th>
+        <th>Termin</th>
+      </tr>
+      <% @user.payments.each do |payment| %>
+      <tr>
+        <td><%= payment.title %></td>
+        <td><%= link_to payment.name, payment %></td>
+        <td><%= payment.price %></td>
+        <td><%= payment.deadline %></td>
+      </tr>
+      <% end %>
+    </table>
   </div>
 </div>
