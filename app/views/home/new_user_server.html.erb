@@ -13,25 +13,26 @@
   <!-- PONIŻEJ TREŚĆ KTÓRĄ NALEŻY PODMIENIAĆ BO DLA KAŻDEJ PODSTRONY JEST INNA -->
   <div class="container-fluid ">
     <div class="row">
-
       <div class="col-12">
         <p class="box-title-header">
-          Panel klienta
+          Nowy serwer
         </p>
       </div>
     </div>
 
-    <!-- CAŁY RZĄD Z FAKTURAMI ORAZ CHECKBOXEM DO OPŁACENIA -->
-    <%= render 'payments' %>
+    <%= simple_form_for(@server, url: create_user_server_path, method: :post) do |f| %>
+      <%= f.error_notification %>
+      <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
-    <!-- STREFA SERWERÓW -->
-    <%= render 'servers' %>
+      <div class="form-inputs">
+        <%= f.association :package, label: "Pakiet", input_html: { class: "select2" } %>
+        <%= f.input :name, label: "Nazwa" %>
+      </div>
 
-    <!-- STREFA DOMEN -->
-    <%= render "domains" %>
-
-    <!-- STREFA USŁUG DODATKOWYCH -->
-    <%= render "additional_services" %>
+      <div class="form-actions">
+        <%= f.button :submit, "Dodaj", class: "btn btn-sm btn-primary" %>
+      </div>
+    <% end %>
 
   </div>
 </div>

@@ -13,7 +13,95 @@
 </head>
 <body>
   <%= flash_messages %>
-  <%= yield %>
+  <!-- NAGŁOWEK GÓRNY -->
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12 col-lg-6 text-center text-lg-left">
+        <%= image_tag "menu/logo-cal.svg", alt: "Logo-cal.pl", class: "main-logo" %>
+        <span class="logo-text">Panel</span>
+      </div>
+      <div class="col-6 col-lg-3 col-xl-4">
+        <form class="form-inline d-flex justify-content-center md-form form-sm search-menu">
+          <input class="form-control form-control-sm mr-3 input-search-box" type="text" placeholder="wyszukiwarka domen, serwerów, funkcjonalności, tematów pomocy
+          " aria-label="Search">
+          <button type="submit" class="search-submit"><i class="fa fa-search search-icon "></i></button>
+        </form>
+      </div>
+      <div class="col-6 col-lg-3 col-xl-2 px-0 ">
+        <div class="dropdown menu-droopdown ">
+          <button class="btn drop-menu dropdown-toggle w-100 text-left " type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fa fa-user user-icon-menu"></i>
+            <span class="first-name-droop"><%= current_user.name %>.</span><br>
+            <span class="first-email-droop"><%= current_user.email %></span>
+          </button>
+          <div class="dropdown-menu sub-menu-user" aria-labelledby="dropdownMenu2">
+            <button class="dropdown-item btn-user-sub-menu" type="button">Twoje konto</button>
+            <button class="dropdown-item btn-user-sub-menu" type="button"><i class="fa fa-envelope-open mr-3"></i>poczta.cal.pl</button>
+            <button class="dropdown-item btn-user-sub-menu" type="button">wyloguj się</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- KONTENER/BOX NA CIAŁO STRONY ORAZ BOCZNE MENU-->
+  <div class="main-page">
+
+    <!-- wrapper CIAŁO STRONY ORAZ BOCZNE MENU-->
+    <div class="wrapper mt-5">
+
+      <!-- sidebar BOCZNE MENU -->
+      <nav id="sidebar" class="">
+        <div class="sticky-top">
+          <ul class="list-unstyled components slide-menu-list sticky-top">
+            <li>
+              <a href="<%= oferty_path %>" ><i class="fa fa-gift slide-menu-icon"></i>Oferty</a>
+            </li>
+            <li>
+              <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-server slide-menu-icon"></i>Serwery i hosting</a>
+              <ul class="collapse list-unstyled" id="pageSubmenu">
+                <li>
+                  <a href="<%= server_list_path %>" class="main-menu-sublink">Lista serwerów</a>
+                </li>
+                <li>
+                  <a href="<%= new_user_server_path %>" class="main-menu-sublink">Nowy serwer</a>
+                </li>
+                <li>
+                  <a href="<%= additional_services_list_path %>" class="main-menu-sublink">Usługi dodatkowe</a>
+                </li>
+                <li>
+                  <a href="https://kreator.pro" target="_blank" class="main-menu-sublink">Kreator stron www <i class="fa fa-external-link ml-2"></i></a>
+                </li>
+              </ul>
+            </li>
+
+            <li>
+              <a href="<%= user_domains_path %>"><i class="fa fa-globe slide-menu-icon"></i>Domeny internetowe</a>
+            </li>
+            <li>
+              <a href="<%= user_payments_path %>"><i class="fa fa-sticky-note slide-menu-icon"></i>Płatności i faktury</a>
+            </li>
+          </ul>
+
+          <p class="slide-menu-title-p sticky-top">
+            POTRZEBNA POMOC ?
+          </p>
+          <p class="slide-menu-phone-p">
+            <i class="fa fa-phone slide-menu-footer-icon"></i>+48 61 679 21 75
+          </p>
+          <p class="slide-menu-mail-p">
+            <i class="fa fa-envelope-open slide-menu-footer-icon"></i>pomoc@cal.pl
+          </p>
+          <p class="slide-menu-contact-p">
+            <a href="#"><i class="fa fa-sticky-note-o slide-menu-footer-icon"></i>Formularz kontaktowy</a>
+          </p>
+          <p class="slide-menu-pp-p">
+            <a href="#"><i class="fa fa-handshake-o slide-menu-footer-icon"></i>Program partnerski</a>
+          </p>
+        </div>
+      </nav>
+      <%= yield %>
+    </div>
+  </div>
   <%= yield :javascript %>
 </body>
 </html>

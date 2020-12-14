@@ -13,25 +13,20 @@
   <!-- PONIŻEJ TREŚĆ KTÓRĄ NALEŻY PODMIENIAĆ BO DLA KAŻDEJ PODSTRONY JEST INNA -->
   <div class="container-fluid ">
     <div class="row">
-
       <div class="col-12">
         <p class="box-title-header">
-          Panel klienta
+          Oferty
         </p>
       </div>
     </div>
 
-    <!-- CAŁY RZĄD Z FAKTURAMI ORAZ CHECKBOXEM DO OPŁACENIA -->
-    <%= render 'payments' %>
-
-    <!-- STREFA SERWERÓW -->
-    <%= render 'servers' %>
-
-    <!-- STREFA DOMEN -->
-    <%= render "domains" %>
-
-    <!-- STREFA USŁUG DODATKOWYCH -->
-    <%= render "additional_services" %>
-
+    <div class="row">
+      <div class="col-12 main-title-servers-zone">
+        <p class="zone-adds-service-title">
+          Oferty przygotowane dla Ciebie
+        </p>
+        <p>W tej chwili nie ma żadych przygotowanych ofert.</p>
+      </div>
+    </div>
   </div>
 </div>
