@@ -1,0 +1,236 @@
+<!-- page-content GŁÓWNY BOX Z ZAWARTOŚCIĄ STRONY KTÓRY NALEZY PODMIENIAĆ W ZALEŻNOŚCI OD PODSTRONY -->
+<div id="page-content">
+
+  <!-- TUTAJ JEST PRZEYCISK DO CHOWANIA ORAZ WYSÓWANIA MEBU BOCZNEGO, TEŻ MUSI ZNAJDOWAĆ SIĘ W KAŻDYM BOX-E Z ZAWARTOŚCIĄ -->
+  <nav class="navbar navbar-expand-lg  sticky-top ">
+    <div class="container-fluid">
+      <button type="button" id="sidebarCollapse" class="btn menu-hamburger">
+        <span><i class="fa fa-exchange"></i></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- PONIŻEJ TREŚĆ KTÓRĄ NALEŻY PODMIENIAĆ BO DLA KAŻDEJ PODSTRONY JEST INNA -->
+  <div class="container-fluid ">
+    <div class="row">
+      <div class="col-12 col-lg-6">
+        <p class="box-title-header">
+          Zarządzanie serwerem
+        </p>
+      </div>
+
+      <div class="col-8 offset-4 offset-lg-0 col-lg-6 text-right">
+        <a href="<%= new_user_server_path %>" class="link-to-new-serwer"><i class="fa fa-rocket"></i>Nowy serwer</a>
+      </div>
+
+    </div>
+
+
+    <div class="row">
+      <div class="col-12 ">
+        
+
+        <div class="row pt-4">
+          <div class="col-lg-1 d-none d-lg-block">
+            <i class="fa fa-rocket next-rocket"></i>
+          </div>
+
+
+          <!-- POCZĄTEK WAŻNEJ STREFY -->
+          <div class="col-12 col-lg-11 ">
+            <div class="row">
+              <div class="col-12 d-inline">
+                <p class="title-server"><%= @server.package.name %></p>
+                <p class="space-on-server">Nazwa serwera</p>
+                <p class="space-on-server-login"><%= @server.name %></p>
+              </div>
+              <div class="col-12 data-ending-server">
+                <% if @server.paid == true %>
+                <span class="status-bill-paid text-left mr-2 ">
+                  OPŁACONY
+                </span>
+                <% else %>
+                <span class="status-bill-not-paid text-left mr-2 ">
+                  NIEOPŁACONY
+                </span>
+                <% end %>
+                Do: <span class="server-data"><%= @server.paid_date %></span>
+                <span class="toEnd"></span>
+              </div>
+              <div class="col-12 col-lg-3 mt-2">
+                <p class="space-on-server">MIEJSCE NA SERWERZE</p>
+                <p class="main-server-value-space space-progres-two">
+                  <% if @server.package.disk_space > (@server.disk_space * 2) %>
+                  <span class="value-green"><%= @server.disk_space %></span>/<%= @server.package.disk_space %> <b>GB</b>
+                  <% else %>
+                  <span class="value-red"><%= @server.disk_space %></span>/<%= @server.package.disk_space %> <b>GB</b>
+                  <% end %>
+                </p>
+                <p class="main-server-progres-space">
+                  <% if @server.package.disk_space > @server.disk_space * 2 %>
+                  <progress class="space-progres space-progres-two  green" value="<%= @server.disk_space %>" max="<%= @server.package.disk_space %>"> <%= @server.disk_space %>/<%= @server.package.disk_space  %></progress>
+                  <% else %>
+                  <progress class="space-progres space-progres-two  red" value="<%= @server.disk_space %>" max="<%= @server.package.disk_space %>"> <%= @server.disk_space %>/<%= @server.package.disk_space  %></progress>
+                  <% end %>
+                </p>
+              </div>
+              <div class="col-6 col-lg-2 mt-2">
+                <p class="add-space">
+                  <a href="">Dodaj miejsce</a>
+                </p>
+              </div>
+
+              <div class="col-6 col-lg-7 mt-2">
+                <p class="see-files">
+                  <a href="">Przeglądaj pliki</a>
+                </p>
+              </div>
+
+              <div class="col-12 text-left">
+                <div class="row">
+                  <div class="col-5 col-lg-3">
+                    <p class="domains-quantity">
+                      Lokalizacja:
+                    </p>
+                  </div>
+
+                  <div class="col-7 col-lg-9 manage-domains-box">
+                    <a href="#" class="link-domain-quantity-manage"></a>
+                  </div>
+                  <div class="col-12 list-domains-box">
+                    <ul class="ul-list-domains">
+                      <li>Polska</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-12 text-left">
+                <div class="row">
+                  <div class="col-5 col-lg-3">
+                    <p class="domains-quantity">
+                      Dane Dostępowe FTP: <span class="quantity-d"><%= @server.u_ftps.count %></span>
+                    </p>
+                  </div>
+
+                  <div class="col-7 col-lg-9 manage-domains-box">
+                    <a class="link-domain-quantity-manage">Zarządzaj</a>
+                  </div>
+                  <div class="col-12 list-domains-box">
+                    <ul class="ul-list-domains">
+                      <% @server.u_ftps.each do |u_ftp| %>
+                      <li><%= u_ftp.name %></li>
+                      <% end %>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-12 text-left">
+                <div class="row">
+                  <div class="col-5 col-lg-3">
+                    <p class="domains-quantity">
+                      Domeny: <span class="quantity-d"><%= @server.domains.count %></span>
+                    </p>
+                  </div>
+
+                  <div class="col-7 col-lg-9 manage-domains-box">
+                    <a href="<%= user_domains_path %>" class="link-domain-quantity-manage">Zarządzaj</a>
+                  </div>
+                  <div class="col-12 list-domains-box">
+                    <ul class="ul-list-domains">
+                      <% @server.domains.each do |domain| %>
+                      <li><%= domain.name %></li>
+                      <% end %>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-12 text-left">
+                <div class="row">
+                  <div class="col-5 col-lg-3">
+                    <p class="domains-quantity">
+                      Bazy Danych: <span class="quantity-d"><%= @server.u_dbs.count %></span>
+                    </p>
+                  </div>
+
+                  <div class="col-7 col-lg-9 manage-domains-box">
+                    <a href="" class="link-domain-quantity-manage">Zarządzaj</a>
+                  </div>
+                  <div class="col-12 list-domains-box">
+                    <ul class="ul-list-domains">
+                      <% @server.u_dbs.each do |u_db| %>
+                      <li><%= u_db.name %></li>
+                      <% end %>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-12 text-left">
+                <div class="row">
+                  <div class="col-5 col-lg-3">
+                    <p class="domains-quantity">
+                      Skrzynki pocztowe: <span class="quantity-d"><%= @server.u_emails.count %></span>
+                    </p>
+                  </div>
+
+                  <div class="col-7 col-lg-9 manage-domains-box">
+                    <a href="" class="link-domain-quantity-manage">Zarządzaj</a>
+                  </div>
+                  <div class="col-12 list-domains-box">
+                    <ul class="ul-list-domains">
+                      <% @server.u_emails.order(:name).each do |u_email| %>
+                      <li><%= u_email.name %></li>
+                      <% end %>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-12 text-left">
+
+                <p class="another-stats">
+                  Pozostałe statystyki
+                </p>
+
+
+                <div class="row another-stats-box">
+                  <div class="col-4">Transfer</div>
+                  <div class="col-8 value-bandwidth-stats">10.9 GB</div>
+
+                  <div class="col-4">Skrzynki pocztowe</div>
+                  <div class="col-8 value-emails-stats"><%= @server.u_emails.count %></div>
+
+                  <div class="col-4">Wysłane emaile</div>
+                  <div class="col-8 value-send-stats">2973</div>
+
+                  <div class="col-4">Autorespondery</div>
+                  <div class="col-8 value-autores-stats">0</div>
+
+                  <div class="col-4">Listy mailingowe</div>
+                  <div class="col-8 value-mailing-stats">0</div>
+
+                  <div class="col-4">Konsola SSH</div>
+                  <div class="col-8 value-ssh-stats">Tak</div>
+
+                  <div class="col-4">Cron Jobs</div>
+                  <div class="col-8 value-cron-stats">Nie</div>
+
+                  <div class="col-4">Data założenia</div>
+                  <div class="col-8 value-data-stats"><%= @server.created_at.to_date %></div>
+
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+</div>

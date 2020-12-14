@@ -2,25 +2,30 @@ class HomeController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @servers = current_user.servers
-    @payments = current_user.payments
+    @servers = current_user.servers.order(:name)
+    @payments = current_user.payments.order(:deadline)
+    @domains = current_user.domains.order(:name)
     @additional_services = AdditionalService.all
   end
 
   def user_domains
-    @domains = current_user.domains
+    @domains = current_user.domains.order(:name)
   end
 
   def user_payments
-    @payments = current_user.payments
+    @payments = current_user.payments.order(:deadline)
   end
 
   def additional_services_list
     @additional_services = AdditionalService.all
   end
 
+  def user_server_settings
+    @server = current_user.servers.find(params[:id])
+  end
+
   def server_list
-    @servers = current_user.servers
+    @servers = current_user.servers.order(:name)
   end
 
   def new_user_server
@@ -31,6 +36,7 @@ class HomeController < ApplicationController
     @server = Server.new(server_params)
     @server.user = current_user
     @server.paid = true
+    @server.disk_space = rand(0..@server.package.disk_space)
 
     respond_to do |format|
       if @server.save

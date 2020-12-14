@@ -18,16 +18,17 @@
           <p class="main-header-bills">Kwota</p>
           <p class="main-body-bills"><%= payment.price %> zł</p>
         </div>
-        <div class="col-6 col-lg-2">
-          <p class="main-header-bills">Zaznacz</p>
-          <div class="form-check">
-            <input class="form-check-input check-bill" type="checkbox" value="" id="pay-bill">
+        <% if payment.title == "Pro Forma" %>
+          <div class="col-6 col-lg-2">
+            <p class="main-header-bills">Operacje</p>
+            <button type="submit" class="btn submit-bill">Opłać</button>
           </div>
-        </div>
+        <% else %>
         <div class="col-6 col-lg-2">
           <p class="main-header-bills">Operacje</p>
-          <button type="submit" class="btn submit-bill">Opłać</button>
+          <button type="submit" class="btn submit-bill">Pobierz PDF</button>
         </div>
+        <% end %>
       </div>
     </form>
     <hr>
