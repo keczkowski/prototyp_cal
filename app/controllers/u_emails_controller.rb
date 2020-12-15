@@ -1,5 +1,6 @@
 class UEmailsController < ApplicationController
   before_action :set_u_email, only: [:update, :destroy]
+  before_action :authenticate_user!
 
   def create
     @u_email = UEmail.new(u_email_params)

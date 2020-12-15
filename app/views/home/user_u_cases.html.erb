@@ -1,0 +1,27 @@
+<!-- page-content GŁÓWNY BOX Z ZAWARTOŚCIĄ STRONY KTÓRY NALEZY PODMIENIAĆ W ZALEŻNOŚCI OD PODSTRONY -->
+<div id="page-content">
+
+  <!-- TUTAJ JEST PRZEYCISK DO CHOWANIA ORAZ WYSÓWANIA MEBU BOCZNEGO, TEŻ MUSI ZNAJDOWAĆ SIĘ W KAŻDYM BOX-E Z ZAWARTOŚCIĄ -->
+  <nav class="navbar navbar-expand-lg  sticky-top ">
+    <div class="container-fluid">
+      <button type="button" id="sidebarCollapse" class="btn menu-hamburger">
+        <span><i class="fa fa-exchange"></i></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- PONIŻEJ TREŚĆ KTÓRĄ NALEŻY PODMIENIAĆ BO DLA KAŻDEJ PODSTRONY JEST INNA -->
+  <div class="container-fluid ">
+    <div class="row">
+      <div class="col-12">
+        <p class="box-title-header">
+          Lista zgłoszeń
+        </p>
+      </div>
+    </div>
+
+    <!-- STREFA SERWERÓW -->
+    <%= render 'u_cases' %>
+
+  </div>
+</div>

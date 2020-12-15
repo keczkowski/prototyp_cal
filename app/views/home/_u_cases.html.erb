@@ -1,0 +1,93 @@
+<div class="row">
+  <div class="col-12 main-title-u_cases-zone">
+    <p class="zone-server-title">
+      Zgłoszenia <span class="close-icon-u_cases"><i class="fa fa-window-close"></i></span>
+    </p>
+  </div>
+
+  <div class="col-12 col-lg-12 ">
+    <table class="table">
+      <tr>
+        <th>Tytuł</th>
+        <th>Treść</th>
+        <th width="150">Opcje</th>
+      </tr>
+      <% @u_cases.each do |u_case| %>
+      <tr>
+        <td><%= u_case.title %></td>
+        <td><%= u_case.body %></td>
+        <td>
+          <button type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#editModal<%= u_case.id %>">
+            Edytuj
+          </button>
+          <%= link_to 'Usuń', u_case, method: :delete, data: { confirm: 'Czy na pewno usunąć?' }, class: "btn btn-sm btn-danger" %>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal">
+  Dodaj zgłoszenie
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <%= simple_form_for(UCase.new) do |f| %>
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Nowe zgłoszenie</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= f.error_notification %>
+        <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+        <div class="form-inputs">
+          <%= f.input :title, label: "Tytuł" %>
+          <%= f.input :body, label: "Treść" %>
+          <%= f.input :user_id, as: :hidden, input_html: { value: current_user.id } %>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Anuluj</button>
+        <%= f.button :submit, "Zapisz", class: "btn btn-primary"%>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<% @u_cases.each do |u_case| %>
+<div class="modal fade" id="editModal<%= u_case.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <%= simple_form_for(u_case) do |f| %>
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Edytuj domenę</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= f.error_notification %>
+        <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+        <div class="form-inputs">
+          <%= f.input :title, label: "Tytuł" %>
+          <%= f.input :body, label: "Treść" %>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Anuluj</button>
+        <%= f.button :submit, "Zapisz", class: "btn btn-primary"%>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+<% end %>

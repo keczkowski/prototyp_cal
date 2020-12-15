@@ -8,6 +8,13 @@ class HomeController < ApplicationController
     @additional_services = AdditionalService.all
   end
 
+  def user_u_cases
+    @u_cases = current_user.u_cases
+  end
+
+  def program_partnerski
+  end
+
   def user_domains
     @domains = current_user.domains.order(:name)
   end

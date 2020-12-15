@@ -1,5 +1,6 @@
 class AdditionalServicesController < ApplicationController
   before_action :set_additional_service, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   # GET /additional_services
   # GET /additional_services.json

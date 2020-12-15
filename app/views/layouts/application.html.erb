@@ -12,7 +12,6 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 </head>
 <body>
-  <%= flash_messages %>
   <!-- NAGŁOWEK GÓRNY -->
   <div class="container-fluid">
     <div class="row">
@@ -35,9 +34,17 @@
             <span class="first-email-droop"><%= current_user.email %></span>
           </button>
           <div class="dropdown-menu sub-menu-user" aria-labelledby="dropdownMenu2">
-            <button class="dropdown-item btn-user-sub-menu" type="button">Twoje konto</button>
-            <button class="dropdown-item btn-user-sub-menu" type="button"><i class="fa fa-envelope-open mr-3"></i>poczta.cal.pl</button>
-            <button class="dropdown-item btn-user-sub-menu" type="button">wyloguj się</button>
+            <a href="<%= edit_user_registration_path %>">
+              <button class="dropdown-item btn-user-sub-menu" type="button">Twoje konto</button>
+            </a>
+            <a href="https://poczta.cal.pl" target="_blank">
+              <button class="dropdown-item btn-user-sub-menu" type="button">
+                <i class="fa fa-envelope-open mr-3"></i>poczta.cal.pl
+              </button>
+            </a>
+            <a href="<%= destroy_user_session_path %>" data-method="delete">
+              <button class="dropdown-item btn-user-sub-menu" type="button">Wyloguj się</button>
+            </a>
           </div>
         </div>
       </div>
@@ -45,7 +52,7 @@
   </div>
   <!-- KONTENER/BOX NA CIAŁO STRONY ORAZ BOCZNE MENU-->
   <div class="main-page">
-
+    <%= flash_messages %>
     <!-- wrapper CIAŁO STRONY ORAZ BOCZNE MENU-->
     <div class="wrapper mt-5">
 
@@ -92,10 +99,10 @@
             <i class="fa fa-envelope-open slide-menu-footer-icon"></i>pomoc@cal.pl
           </p>
           <p class="slide-menu-contact-p">
-            <a href="#"><i class="fa fa-sticky-note-o slide-menu-footer-icon"></i>Formularz kontaktowy</a>
+            <a href="<%= user_u_cases_path %>"><i class="fa fa-sticky-note-o slide-menu-footer-icon"></i>Formularz kontaktowy</a>
           </p>
           <p class="slide-menu-pp-p">
-            <a href="#"><i class="fa fa-handshake-o slide-menu-footer-icon"></i>Program partnerski</a>
+            <a href="<%= program_partnerski_path %>"><i class="fa fa-handshake-o slide-menu-footer-icon"></i>Program partnerski</a>
           </p>
         </div>
       </nav>

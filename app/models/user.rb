@@ -9,6 +9,7 @@ class User < ApplicationRecord
   has_many :servers
   has_many :domains
   has_many :payments
+  has_many :u_cases
 
   paginates_per 10
 end

@@ -1,5 +1,6 @@
 class UDbsController < ApplicationController
   before_action :set_u_db, only: [:update, :destroy]
+  before_action :authenticate_user!
 
   def create
     @u_db = UDb.new(u_db_params)

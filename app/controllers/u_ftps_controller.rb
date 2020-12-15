@@ -1,5 +1,6 @@
 class UFtpsController < ApplicationController
   before_action :set_u_ftp, only: [:update, :destroy]
+  before_action :authenticate_user!
 
   def create
     @u_ftp = UFtp.new(u_ftp_params)

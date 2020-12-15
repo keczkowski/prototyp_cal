@@ -16,6 +16,8 @@ AdditionalService.create(name: "Zamów certyfikaty SSL", body: "Bezpieczeństwo 
 AdditionalService.create(name: "Oprogramowanie wirusowe G Data", body: "G Data rekordowo szybko reaguje na nowe zagrożenia, gwarantując najwyższy poziom ochrony podczas przeglądania stron WWW. Rozpoznaje i blokuje wirusy, rootkity, robaki, spyware, trojany i backdoory. Możesz bezpoecznie wykonywać czynności związane z bankowością internetową. Zabeczpiecz komputer niebezpiecznymi programami, hakerami i spamem.")
 AdditionalService.create(name: "Zestaw 150 mocnych linków SEO", body: "Podstawę strategii umiejętnego linkowania stanowi dziś przede wszystkim jego dywersyfikacja. Dotyczy to zarówno pochodzenia źródła odnośników, sposobów ich zdobywania, jak i rodzajów umieszczanych linków. Dlatego też oferujemy Ci skuteczny zestaw!")
 
+
+
 # first user
 user = User.create(
   name: "Krzysztof Kęczkowski",
@@ -24,15 +26,15 @@ user = User.create(
   password: "123qwe!@#QWE",
   password_confirmation: "123qwe!@#QWE"
 )
+package = Package.all.sample
+payment = Payment.create(
+  title: ['Pro Forma', 'Faktura VAT'].sample,
+  name: package.name + " " + Faker::Invoice.reference,
+  price: package.price,
+  user_id: user.id,
+  deadline: Faker::Date.between(from: 1.year.ago, to: Date.today + 1.year)
+)
 4.times do
-  package = Package.all.sample
-  payment = Payment.create(
-    title: ['Pro Forma', 'Faktura VAT'].sample,
-    name: package.name + " " + Faker::Invoice.reference,
-    price: package.price,
-    user_id: user.id,
-    deadline: Faker::Date.between(from: 1.year.ago, to: Date.today + 1.year)
-  )
   server = Server.create(
     package_id: package.id,
     user_id: user.id,

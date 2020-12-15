@@ -1,5 +1,6 @@
 class DnsRecordsController < ApplicationController
   before_action :set_dns_record, only: [:update, :destroy]
+  before_action :authenticate_user!
 
   def create
     @dns_record = DnsRecord.new(dns_record_params)
