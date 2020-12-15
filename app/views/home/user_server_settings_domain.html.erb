@@ -1,0 +1,177 @@
+<!-- page-content GŁÓWNY BOX Z ZAWARTOŚCIĄ STRONY KTÓRY NALEZY PODMIENIAĆ W ZALEŻNOŚCI OD PODSTRONY -->
+<div id="page-content">
+
+  <!-- TUTAJ JEST PRZEYCISK DO CHOWANIA ORAZ WYSÓWANIA MEBU BOCZNEGO, TEŻ MUSI ZNAJDOWAĆ SIĘ W KAŻDYM BOX-E Z ZAWARTOŚCIĄ -->
+  <nav class="navbar navbar-expand-lg  sticky-top ">
+    <div class="container-fluid">
+      <button type="button" id="sidebarCollapse" class="btn menu-hamburger">
+        <span><i class="fa fa-exchange"></i></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- PONIŻEJ TREŚĆ KTÓRĄ NALEŻY PODMIENIAĆ BO DLA KAŻDEJ PODSTRONY JEST INNA -->
+  <div class="container-fluid ">
+    <div class="row">
+      <div class="col-12 col-lg-6">
+        <p class="box-title-header">
+          Zarządzanie serwerem > Domeny
+        </p>
+      </div>
+
+    </div>
+
+
+    <div class="row">
+      <div class="col-12 ">
+
+
+        <div class="row pt-4">
+          <div class="col-lg-1 d-none d-lg-block">
+            <i class="fa fa-rocket next-rocket"></i>
+          </div>
+
+
+          <!-- POCZĄTEK WAŻNEJ STREFY -->
+          <div class="col-12 col-lg-11 ">
+            <div class="row">
+              <div class="col-12 d-inline">
+                <p class="title-server"><%= @server.package.name %></p>
+                <p class="space-on-server">Nazwa serwera</p>
+                <p class="space-on-server-login"><%= @server.name %></p>
+              </div>
+              <div class="col-12 data-ending-server">
+                <% if @server.paid == true %>
+                <span class="status-bill-paid text-left mr-2 ">
+                  OPŁACONY
+                </span>
+                <% else %>
+                <span class="status-bill-not-paid text-left mr-2 ">
+                  NIEOPŁACONY
+                </span>
+                <% end %>
+                Do: <span class="server-data"><%= @server.paid_date %></span>
+                <span class="toEnd"></span>
+              </div>
+              <div class="col-12 col-lg-3 mt-2">
+                <p class="space-on-server">MIEJSCE NA SERWERZE</p>
+                <p class="main-server-value-space space-progres-two">
+                  <% if @server.package.disk_space > (@server.disk_space * 2) %>
+                  <span class="value-green"><%= @server.disk_space %></span>/<%= @server.package.disk_space %> <b>GB</b>
+                  <% else %>
+                  <span class="value-red"><%= @server.disk_space %></span>/<%= @server.package.disk_space %> <b>GB</b>
+                  <% end %>
+                </p>
+                <p class="main-server-progres-space">
+                  <% if @server.package.disk_space > @server.disk_space * 2 %>
+                  <progress class="space-progres space-progres-two  green" value="<%= @server.disk_space %>" max="<%= @server.package.disk_space %>"> <%= @server.disk_space %>/<%= @server.package.disk_space  %></progress>
+                  <% else %>
+                  <progress class="space-progres space-progres-two  red" value="<%= @server.disk_space %>" max="<%= @server.package.disk_space %>"> <%= @server.disk_space %>/<%= @server.package.disk_space  %></progress>
+                  <% end %>
+                </p>
+              </div>
+
+              <div class="col-12 text-left">
+                <div class="row">
+                  <div class="col-5 col-lg-3">
+                    <p class="domains-quantity">
+                      Domeny:
+                    </p>
+                  </div>
+
+                  <div class="col-7 col-lg-9 manage-domains-box">
+                    <a href="#" class="link-domain-quantity-manage"></a>
+                  </div>
+                  <div class="col-12 list-domains-box">
+                    <table class="table">
+                      <tr>
+                        <th>Nazwa</th>
+                        <th width="120">Opcje</th>
+                      </tr>
+                      <% @server.domains.order(:name).each do |domain| %>
+                      <tr>
+                        <td><%= domain.name %></td>
+                        <td>
+                          <button type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#editModal<%= domain.id %>">
+                            Edytuj
+                          </button>
+                          <%= link_to 'Usuń', domain, method: :delete, data: { confirm: 'Czy na pewno usunąć?' }, class: "btn btn-sm btn-danger" %>
+                        </td>
+                      </tr>
+                      <% end %>
+                    </table>
+
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal">
+                      Dodaj domenę
+                    </button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <%= simple_form_for(@domain) do |f| %>
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Nowa domena</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            <%= f.error_notification %>
+                            <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+                            <div class="form-inputs">
+                              <%= f.input :name, label: "Nazwa" %>
+                              <%= f.input :server_id, as: :hidden, input_html: { value: @server.id } %>
+                              <%= f.input :user_id, as: :hidden, input_html: { value: current_user.id } %>
+                            </div>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Anuluj</button>
+                            <%= f.button :submit, "Zapisz", class: "btn btn-primary"%>
+                          </div>
+                          <% end %>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<% @server.domains.each do |domain| %>
+<div class="modal fade" id="editModal<%= domain.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <%= simple_form_for(domain) do |f| %>
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Edytuj domenę</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= f.error_notification %>
+        <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+        <div class="form-inputs">
+          <%= f.input :name, label: "Nazwa" %>
+          <%= f.input :server_id, as: :hidden, input_html: { value: @server.id } %>
+          <%= f.input :user_id, as: :hidden, input_html: { value: current_user.id } %>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Anuluj</button>
+        <%= f.button :submit, "Zapisz", class: "btn btn-primary"%>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+<% end %>

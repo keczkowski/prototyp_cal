@@ -24,6 +24,26 @@ class HomeController < ApplicationController
     @server = current_user.servers.find(params[:id])
   end
 
+  def user_server_settings_ftp
+    @server = current_user.servers.find(params[:id])
+    @u_ftp = UFtp.new
+  end
+
+  def user_server_settings_db
+    @server = current_user.servers.find(params[:id])
+    @u_db = UDb.new
+  end
+
+  def user_server_settings_domain
+    @server = current_user.servers.find(params[:id])
+    @domain = Domain.new
+  end
+
+  def user_server_settings_email
+    @server = current_user.servers.find(params[:id])
+    @u_email = UEmail.new
+  end
+
   def server_list
     @servers = current_user.servers.order(:name)
   end

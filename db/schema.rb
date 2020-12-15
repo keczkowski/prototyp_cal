@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_14_062818) do
+ActiveRecord::Schema.define(version: 2020_12_15_063953) do
 
   create_table "additional_services", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
@@ -73,6 +73,9 @@ ActiveRecord::Schema.define(version: 2020_12_14_062818) do
     t.integer "server_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.text "body"
+    t.string "title"
+    t.string "forward_to"
   end
 
   create_table "u_ftps", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|

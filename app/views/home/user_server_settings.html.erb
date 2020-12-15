@@ -19,16 +19,12 @@
         </p>
       </div>
 
-      <div class="col-8 offset-4 offset-lg-0 col-lg-6 text-right">
-        <a href="<%= new_user_server_path %>" class="link-to-new-serwer"><i class="fa fa-rocket"></i>Nowy serwer</a>
-      </div>
-
     </div>
 
 
     <div class="row">
       <div class="col-12 ">
-        
+
 
         <div class="row pt-4">
           <div class="col-lg-1 d-none d-lg-block">
@@ -76,13 +72,48 @@
               </div>
               <div class="col-6 col-lg-2 mt-2">
                 <p class="add-space">
-                  <a href="">Dodaj miejsce</a>
+                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal">
+                    Zmień ustawienia
+                  </button>
                 </p>
+              </div>
+
+              <!-- Modal -->
+              <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <%= simple_form_for(@server) do |f| %>
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Nowa domena</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <%= f.error_notification %>
+                      <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+                      <div class="form-inputs">
+                        <%= f.input :name, label: "Nazwa" %>
+                        <%= f.association :package, label: "Pakiet" %>
+                        <%= f.input :disk_space, label: "Zajęta powierzchnia" %>
+                        <%= f.input :paid, label: "Opłacony" %>
+                        <%= f.input :paid_date, label: "Data płatności" %>
+                        <%= f.input :user_id, as: :hidden, input_html: { value: current_user.id } %>
+                      </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Anuluj</button>
+                      <%= f.button :submit, "Zapisz", class: "btn btn-primary"%>
+                    </div>
+                    <% end %>
+                  </div>
+                </div>
               </div>
 
               <div class="col-6 col-lg-7 mt-2">
                 <p class="see-files">
-                  <a href="">Przeglądaj pliki</a>
+                  
                 </p>
               </div>
 
@@ -114,7 +145,7 @@
                   </div>
 
                   <div class="col-7 col-lg-9 manage-domains-box">
-                    <a class="link-domain-quantity-manage">Zarządzaj</a>
+                    <a href="<%= user_server_settings_ftp_path(id: @server.id) %>" class="link-domain-quantity-manage">Zarządzaj</a>
                   </div>
                   <div class="col-12 list-domains-box">
                     <ul class="ul-list-domains">
@@ -135,7 +166,7 @@
                   </div>
 
                   <div class="col-7 col-lg-9 manage-domains-box">
-                    <a href="<%= user_domains_path %>" class="link-domain-quantity-manage">Zarządzaj</a>
+                    <a href="<%= user_server_settings_domain_path(id: @server.id) %>" class="link-domain-quantity-manage">Zarządzaj</a>
                   </div>
                   <div class="col-12 list-domains-box">
                     <ul class="ul-list-domains">
@@ -156,7 +187,7 @@
                   </div>
 
                   <div class="col-7 col-lg-9 manage-domains-box">
-                    <a href="" class="link-domain-quantity-manage">Zarządzaj</a>
+                    <a href="<%= user_server_settings_db_path(id: @server.id) %>" class="link-domain-quantity-manage">Zarządzaj</a>
                   </div>
                   <div class="col-12 list-domains-box">
                     <ul class="ul-list-domains">
@@ -177,7 +208,7 @@
                   </div>
 
                   <div class="col-7 col-lg-9 manage-domains-box">
-                    <a href="" class="link-domain-quantity-manage">Zarządzaj</a>
+                    <a href="<%= user_server_settings_email_path(id: @server.id) %>" class="link-domain-quantity-manage">Zarządzaj</a>
                   </div>
                   <div class="col-12 list-domains-box">
                     <ul class="ul-list-domains">

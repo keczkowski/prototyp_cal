@@ -29,7 +29,7 @@ class ServersController < ApplicationController
 
     respond_to do |format|
       if @server.save
-        format.html { redirect_to @server, notice: 'Server was successfully created.' }
+        format.html { redirect_back(fallback_location: root_path, notice: 'Serwer został utworzony.') }
         format.json { render :show, status: :created, location: @server }
       else
         format.html { render :new }
@@ -43,7 +43,7 @@ class ServersController < ApplicationController
   def update
     respond_to do |format|
       if @server.update(server_params)
-        format.html { redirect_to @server, notice: 'Server was successfully updated.' }
+        format.html { redirect_back(fallback_location: root_path, notice: 'Serwer został zmieniony.') }
         format.json { render :show, status: :ok, location: @server }
       else
         format.html { render :edit }
@@ -57,7 +57,7 @@ class ServersController < ApplicationController
   def destroy
     @server.destroy
     respond_to do |format|
-      format.html { redirect_to servers_url, notice: 'Server was successfully destroyed.' }
+      format.html { redirect_back(fallback_location: root_path, notice: 'Serwer został usunięty.') }
       format.json { head :no_content }
     end
   end

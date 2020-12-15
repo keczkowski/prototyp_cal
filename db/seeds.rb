@@ -24,7 +24,7 @@ user = User.create(
   password: "123qwe!@#QWE",
   password_confirmation: "123qwe!@#QWE"
 )
-5.times do
+4.times do
   package = Package.all.sample
   payment = Payment.create(
     title: ['Pro Forma', 'Faktura VAT'].sample,
@@ -47,7 +47,7 @@ user = User.create(
     home: '/home',
     server_id: server.id
   )
-  2.times do
+  3.times do
     u_db = UDb.create(
       name: Faker::Internet.username(specifier: 5..10),
       username: Faker::Internet.username(specifier: 5..10),
@@ -61,7 +61,7 @@ user = User.create(
       user_id: user.id,
       server_id: server.id
     )
-    2.times do
+    3.times do
       u_email = UEmail.create(
         name: Faker::Internet.email(domain: domain.name),
         password: 'password',

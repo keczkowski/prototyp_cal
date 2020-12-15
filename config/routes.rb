@@ -5,6 +5,9 @@ Rails.application.routes.draw do
   resources :servers
   resources :packages
   resources :users
+  resources :u_ftps
+  resources :u_dbs
+  resources :u_emails
 
   devise_for :users, path: 'auth', path_names: { sign_in: 'login',
                                                sign_out: 'logout',
@@ -22,6 +25,10 @@ Rails.application.routes.draw do
   get "server_list", to: 'home#server_list', as: "server_list"
   get "new_user_server", to: 'home#new_user_server', as: "new_user_server"
   get "zarzadzanie_serwerem/:id", to: 'home#user_server_settings', as: "user_server_settings"
+  get "zarzadzanie_serwerem/:id/ftp", to: 'home#user_server_settings_ftp', as: "user_server_settings_ftp"
+  get "zarzadzanie_serwerem/:id/db", to: 'home#user_server_settings_db', as: "user_server_settings_db"
+  get "zarzadzanie_serwerem/:id/domain", to: 'home#user_server_settings_domain', as: "user_server_settings_domain"
+  get "zarzadzanie_serwerem/:id/email", to: 'home#user_server_settings_email', as: "user_server_settings_email"
   post 'create_user_server', to: 'home#create_user_server', as: 'create_user_server'
   root to: 'home#index'
 

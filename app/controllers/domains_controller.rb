@@ -29,7 +29,7 @@ class DomainsController < ApplicationController
 
     respond_to do |format|
       if @domain.save
-        format.html { redirect_to @domain, notice: 'Domain was successfully created.' }
+        format.html { redirect_back(fallback_location: root_path, notice: 'Domena została utworzona.') }
         format.json { render :show, status: :created, location: @domain }
       else
         format.html { render :new }
@@ -43,7 +43,7 @@ class DomainsController < ApplicationController
   def update
     respond_to do |format|
       if @domain.update(domain_params)
-        format.html { redirect_to @domain, notice: 'Domain was successfully updated.' }
+        format.html { redirect_back(fallback_location: root_path, notice: 'Domena została zmieniona.') }
         format.json { render :show, status: :ok, location: @domain }
       else
         format.html { render :edit }
@@ -57,7 +57,7 @@ class DomainsController < ApplicationController
   def destroy
     @domain.destroy
     respond_to do |format|
-      format.html { redirect_to domains_url, notice: 'Domain was successfully destroyed.' }
+      format.html { redirect_back(fallback_location: root_path, notice: 'Domena została usunięta.') }
       format.json { head :no_content }
     end
   end
