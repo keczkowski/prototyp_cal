@@ -26,11 +26,11 @@ module Railsapp
      config.action_mailer.asset_host = 'http://projekt-panel-adm.infocal.eu'
      ActionMailer::Base.delivery_method = :smtp
      ActionMailer::Base.smtp_settings = {
-       :address              => "mail.projekt-panel-adm.infocal.eu",
+       :address              => "mail.projekt.infocal.eu",
        :port                 => 587,
        :domain               => "www.projekt-panel-adm.infocal.eu",
-       :user_name            => "mail@projekt-panel-adm.infocal.eu",
-       :password             => '3M4eLRhXN',
+       :user_name            => "mail@projekt.infocal.eu",
+       :password             => 'N8FhVxuw',
        :authentication       => "plain",
        :enable_starttls_auto => true,
        :openssl_verify_mode  => 'none'
