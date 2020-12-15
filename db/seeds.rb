@@ -20,11 +20,12 @@ AdditionalService.create(name: "Zestaw 150 mocnych linków SEO", body: "Podstaw�
 
 # first user
 user = User.create(
-  name: "Krzysztof Kęczkowski",
-  position: "Programista",
+  name: "Użytkownik Testowy",
+  position: "Tester",
   email: "kkeczkowski@icloud.com",
   password: "123qwe!@#QWE",
-  password_confirmation: "123qwe!@#QWE"
+  password_confirmation: "123qwe!@#QWE",
+  confirmed_at: Time.now
 )
 package = Package.all.sample
 payment = Payment.create(
