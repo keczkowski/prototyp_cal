@@ -20,16 +20,16 @@ module Railsapp
      config.assets.precompile += [ 'application.js', 'appviews.js', 'cssanimations.js', 'dashboards.js', 'forms.js', 'gallery.js', 'graphs.js', 'mailbox.js', 'miscellaneous.js', 'pages.js', 'tables.js', 'uielements.js', 'widgets.js', 'commerce.js', 'metrics.js', 'landing.js' ]
      # wklejone ponizej
      config.i18n.default_locale = :en
-     config.action_mailer.default_url_options = { host: 'http://prototyp.cal.pl' }
+     config.action_mailer.default_url_options = { host: 'http://projekt-panel-adm.infocal.eu' }
      config.action_mailer.raise_delivery_errors = true
      config.action_mailer.perform_deliveries = true
-     config.action_mailer.asset_host = 'http://prototyp.cal.pl'
+     config.action_mailer.asset_host = 'http://projekt-panel-adm.infocal.eu'
      ActionMailer::Base.delivery_method = :smtp
      ActionMailer::Base.smtp_settings = {
-       :address              => "mail.prototyp.cal.pl",
+       :address              => "mail.projekt-panel-adm.infocal.eu",
        :port                 => 587,
-       :domain               => "www.protyp.cal.pl",
-       :user_name            => "mail@prototyp.cal.pl",
+       :domain               => "www.projekt-panel-adm.infocal.eu",
+       :user_name            => "mail@projekt-panel-adm.infocal.eu",
        :password             => '3M4eLRhXN',
        :authentication       => "plain",
        :enable_starttls_auto => true,

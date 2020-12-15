@@ -14,6 +14,6 @@ production:
   encoding: utf8
   host: 51.68.137.244
   pool: 5
-  database: prototyp_cal
+  database: prototyp_cal_production
   username: user
   password: Stabilox123
