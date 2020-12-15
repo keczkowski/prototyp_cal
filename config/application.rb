@@ -23,7 +23,7 @@ module Railsapp
      config.action_mailer.default_url_options = { host: 'http://projekt-panel-adm.infocal.eu' }
      config.action_mailer.raise_delivery_errors = true
      config.action_mailer.perform_deliveries = true
-     config.action_mailer.asset_host = 'http://projekt.infocal.eu'
+     config.action_mailer.asset_host = 'http://projekt-panel-adm.infocal.eu'
      ActionMailer::Base.delivery_method = :smtp
      ActionMailer::Base.smtp_settings = {
        :address              => "mail.projekt.infocal.eu",

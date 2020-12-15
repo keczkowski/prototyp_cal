@@ -16,8 +16,6 @@ AdditionalService.create(name: "Zamów certyfikaty SSL", body: "Bezpieczeństwo 
 AdditionalService.create(name: "Oprogramowanie wirusowe G Data", body: "G Data rekordowo szybko reaguje na nowe zagrożenia, gwarantując najwyższy poziom ochrony podczas przeglądania stron WWW. Rozpoznaje i blokuje wirusy, rootkity, robaki, spyware, trojany i backdoory. Możesz bezpoecznie wykonywać czynności związane z bankowością internetową. Zabeczpiecz komputer niebezpiecznymi programami, hakerami i spamem.")
 AdditionalService.create(name: "Zestaw 150 mocnych linków SEO", body: "Podstawę strategii umiejętnego linkowania stanowi dziś przede wszystkim jego dywersyfikacja. Dotyczy to zarówno pochodzenia źródła odnośników, sposobów ich zdobywania, jak i rodzajów umieszczanych linków. Dlatego też oferujemy Ci skuteczny zestaw!")
 
-
-
 # first user
 user = User.create(
   name: "Użytkownik Testowy",
