@@ -20,6 +20,7 @@ Rails.application.routes.draw do
                                                sign_up: 'signup' }
 
   get "home/index"
+  get "search/(:q)", to: "home#search", as: "search"
   get "program_partnerski", to: "home#program_partnerski", as: "program_partnerski"
   get "oferty", to: 'home#oferty', as: "oferty"
   get "domeny", to: 'home#user_domains', as: "user_domains"

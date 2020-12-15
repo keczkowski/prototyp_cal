@@ -8,6 +8,14 @@ class HomeController < ApplicationController
     @additional_services = AdditionalService.all
   end
 
+  def search
+    if params[:q].present? and params[:q].length > 0
+      @servers = current_user.servers.where("name LIKE ?", "%#{params[:q]}%")
+      @domains = current_user.domains.where("name LIKE ?", "%#{params[:q]}%")
+      @u_cases = current_user.u_cases.where("title LIKE ?", "%#{params[:q]}%")
+    end
+  end
+
   def user_u_cases
     @u_cases = current_user.u_cases
   end

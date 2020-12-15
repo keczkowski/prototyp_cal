@@ -20,9 +20,9 @@
         <span class="logo-text">Panel</span>
       </div>
       <div class="col-6 col-lg-3 col-xl-4">
-        <form class="form-inline d-flex justify-content-center md-form form-sm search-menu">
+        <form class="form-inline d-flex justify-content-center md-form form-sm search-menu" action="<%= search_path %>">
           <input class="form-control form-control-sm mr-3 input-search-box" type="text" placeholder="wyszukiwarka domen, serwerów, funkcjonalności, tematów pomocy
-          " aria-label="Search">
+          " aria-label="Search" id="q" name="q" value=<%= params[:q] if (params[:q].present? and params[:q].length > 0) %>>
           <button type="submit" class="search-submit"><i class="fa fa-search search-icon "></i></button>
         </form>
       </div>
