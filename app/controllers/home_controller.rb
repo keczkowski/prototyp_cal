@@ -12,6 +12,11 @@ class HomeController < ApplicationController
     @domains = current_user.domains.order(:name)
   end
 
+  def user_domain
+    @domain = current_user.domains.find(params[:id])
+    @dns_records = @domain.dns_records
+  end
+
   def user_payments
     @payments = current_user.payments.order(:deadline)
   end

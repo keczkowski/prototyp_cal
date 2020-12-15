@@ -61,6 +61,12 @@ user = User.create(
       user_id: user.id,
       server_id: server.id
     )
+    DnsRecord.create(domain_id: domain.id, dtype: "A", name: domain.name, ttl: 14400, value: '127.0.0.1')
+    DnsRecord.create(domain_id: domain.id, dtype: "A", name: 'ftp', ttl: 14400, value: '127.0.0.1')
+    DnsRecord.create(domain_id: domain.id, dtype: "A", name: 'mail', ttl: 14400, value: '127.0.0.1')
+    DnsRecord.create(domain_id: domain.id, dtype: "A", name: 'pop', ttl: 14400, value: '127.0.0.1')
+    DnsRecord.create(domain_id: domain.id, dtype: "A", name: 'smtp', ttl: 14400, value: '127.0.0.1')
+    DnsRecord.create(domain_id: domain.id, dtype: "A", name: 'www', ttl: 14400, value: '127.0.0.1')
     3.times do
       u_email = UEmail.create(
         name: Faker::Internet.email(domain: domain.name),

@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :u_ftps
   resources :u_dbs
   resources :u_emails
+  resources :dns_records
 
   devise_for :users, path: 'auth', path_names: { sign_in: 'login',
                                                sign_out: 'logout',
@@ -20,6 +21,7 @@ Rails.application.routes.draw do
   get "home/index"
   get "oferty", to: 'home#oferty', as: "oferty"
   get "domeny", to: 'home#user_domains', as: "user_domains"
+  get "domeny/:id", to: 'home#user_domain', as: "user_domain"
   get "platnosci", to: 'home#user_payments', as: "user_payments"
   get "additional_services_list", to: 'home#additional_services_list', as: "additional_services_list"
   get "server_list", to: 'home#server_list', as: "server_list"

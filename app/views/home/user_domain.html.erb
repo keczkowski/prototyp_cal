@@ -1,0 +1,117 @@
+<!-- page-content GŁÓWNY BOX Z ZAWARTOŚCIĄ STRONY KTÓRY NALEZY PODMIENIAĆ W ZALEŻNOŚCI OD PODSTRONY -->
+<div id="page-content">
+
+  <!-- TUTAJ JEST PRZEYCISK DO CHOWANIA ORAZ WYSÓWANIA MEBU BOCZNEGO, TEŻ MUSI ZNAJDOWAĆ SIĘ W KAŻDYM BOX-E Z ZAWARTOŚCIĄ -->
+  <nav class="navbar navbar-expand-lg  sticky-top ">
+    <div class="container-fluid">
+      <button type="button" id="sidebarCollapse" class="btn menu-hamburger">
+        <span><i class="fa fa-exchange"></i></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- PONIŻEJ TREŚĆ KTÓRĄ NALEŻY PODMIENIAĆ BO DLA KAŻDEJ PODSTRONY JEST INNA -->
+  <div class="container-fluid ">
+    <div class="row">
+      <div class="col-12">
+        <p class="box-title-header">
+          Domena: <%= @domain.name %>
+        </p>
+      </div>
+    </div>
+
+    <table class="table">
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>TTL</th>
+        <th>Value</th>
+        <th width="150">Opcje</th>
+      </tr>
+      <% @dns_records.each do |dns_record| %>
+      <tr>
+        <td><%= dns_record.dtype %></td>
+        <td><%= dns_record.name %></td>
+        <td><%= dns_record.ttl %></td>
+        <td><%= dns_record.value %></td>
+        <td>
+          <button type="button" class="btn btn-sm btn-warning" data-toggle="modal" data-target="#editModal<%= dns_record.id %>">
+            Edytuj
+          </button>
+          <%= link_to 'Usuń', dns_record, method: :delete, data: { confirm: 'Czy na pewno usunąć?' }, class: "btn btn-sm btn-danger" %>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addModal">
+      Dodaj rekord DNS
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <%= simple_form_for(DnsRecord.new) do |f| %>
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Nowy rekord DNS</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <%= f.error_notification %>
+            <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+            <div class="form-inputs">
+              <%= f.input :dtype, label: "Type", as: :select, collection: ['A', 'CNAME', 'MX', 'TXT'] %>
+              <%= f.input :name, label: "Name" %>
+              <%= f.input :ttl, label: "TTL" %>
+              <%= f.input :value, label: "Value" %>
+              <%= f.input :domain_id, as: :hidden, input_html: { value: @domain.id } %>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Anuluj</button>
+            <%= f.button :submit, "Zapisz", class: "btn btn-primary"%>
+          </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% @dns_records.each do |dns_record| %>
+<div class="modal fade" id="editModal<%= dns_record.id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <%= simple_form_for(dns_record) do |f| %>
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Edytuj rekord DNS</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= f.error_notification %>
+        <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+        <div class="form-inputs">
+          <%= f.input :dtype, label: "Type", as: :select, collection: ['A', 'CNAME', 'MX', 'TXT'] %>
+          <%= f.input :name, label: "Name" %>
+          <%= f.input :ttl, label: "TTL" %>
+          <%= f.input :value, label: "Value" %>
+          <%= f.input :domain_id, as: :hidden, input_html: { value: @domain.id } %>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Anuluj</button>
+        <%= f.button :submit, "Zapisz", class: "btn btn-primary"%>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+<% end %>

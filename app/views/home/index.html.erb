@@ -28,7 +28,35 @@
     <%= render 'servers' %>
 
     <!-- STREFA DOMEN -->
-    <%= render "domains" %>
+    <div class="row">
+      <div class="col-12 main-title-domains-zone">
+        <p class="zone-server-title">
+          Domeny <span class="close-icon-domains"><i class="fa fa-window-close"></i></span>
+        </p>
+      </div>
+
+      <div class="col-12 col-lg-12 ">
+        <div class="domains-box">
+          <div class="row">
+
+            <% @domains.each do |domain| %>
+            <div class="col-6 special-border-right">
+              <div class="row">
+                <div class="col-12 col-md-8 ">
+                  <p class="element-list-domain">
+                    <span class="domain-name-list"><%= domain.name %></span>
+                  </p>
+                </div>
+                <div class="col-12 col-md-4 manage-list-domain">
+                  <a href="<%= user_domain_path(id: domain.id) %>">Zarządzaj</a>
+                </div>
+              </div>
+            </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- STREFA USŁUG DODATKOWYCH -->
     <%= render "additional_services" %>
