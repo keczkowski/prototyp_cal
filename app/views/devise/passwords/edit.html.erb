@@ -35,13 +35,13 @@
             Uzupełnij formularz poniżej, aby przypomnieć hasło
           </p>
           <div class="form-inputs">
-            <%= f.input :password,
+            <%#= f.input :password,
             label: "Nowe hasło",
             required: true,
             autofocus: true,
             hint: ("#{@minimum_password_length} minimalnie znaków" if @minimum_password_length),
             input_html: { autocomplete: "new-password" } %>
-            <%= f.input :password_confirmation,
+            <%#= f.input :password_confirmation,
             label: "Potwierdź swoje nowe hasło",
             required: true,
             input_html: { autocomplete: "new-password" } %>

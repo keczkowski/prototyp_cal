@@ -30,19 +30,19 @@
             <p class="login-form-subTitle">
               Uzupełnij formularz poniżej, aby zmienić swoje dane do logowania
             </p>
-            <%= f.input :email,
+            <%#= f.input :email,
                         required: true,
                         autofocus: true,
                         input_html: { autocomplete: "email" }%>
-            <%= f.input :current_password, label: "Aktualne hasło",
+            <%#= f.input :current_password, label: "Aktualne hasło",
                         hint: "jest wymagane do zmiany danych",
                         required: true,
                         input_html: { autocomplete: "current-password" } %>
-            <%= f.input :password, label: "Hasło",
+            <%#= f.input :password, label: "Hasło",
                         hint: "pozostaw puste jeśli nie chcesz go zmieniać",
                         required: false,
                         input_html: { autocomplete: "new-password" } %>
-            <%= f.input :password_confirmation, label: "Potwierdzenia hasła",
+            <%#= f.input :password_confirmation, label: "Potwierdzenia hasła",
                         hint: "pozostaw puste jeśli nie chcesz go zmieniać",
                         required: false,
                         input_html: { autocomplete: "new-password" } %>
